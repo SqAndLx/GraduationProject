@@ -8,11 +8,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public final class DataUtils {
+public final class DataUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(DataUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(DataUtil.class);
 
-    private DataUtils() {}
+    private DataUtil() {}
 
     /**
      * Date类型转String类型
