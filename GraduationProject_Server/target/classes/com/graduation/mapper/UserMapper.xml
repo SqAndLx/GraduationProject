@@ -3,15 +3,12 @@
 
 <mapper namespace="com.graduation.dao.UserMapper">
 
-
     <resultMap type="User" id="UserMap">
         <id property="id" column="c_id" jdbcType="VARCHAR" />
         <result property="name" column="c_name" jdbcType="VARCHAR" />
     </resultMap>
 
-
-
-    <select id="selectUser" parameterType="String" resultMap="UserMap" resultType="com.graduation.mode.User">
+    <select id="selectUserById" parameterType="String" resultMap="UserMap" resultType="com.graduation.mode.User">
         select *
         from user
         where c_id = #{id}

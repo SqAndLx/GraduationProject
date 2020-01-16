@@ -14,6 +14,6 @@ public class UserController {
 
     @PostMapping(path = "/demo")
     public User index(@RequestParam(name = "id") String id ) {
-        return userService.selectUser(id);
+        return userService.selectUserById(id);
     }
 }

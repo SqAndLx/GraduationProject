@@ -8,11 +8,17 @@ import com.graduation.mode.User;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 根据id查寻用户信息
+     * @param id
+     * @return
+     */
     @Override
-    public User selectUser(String id) {
-        return userMapper.selectUser(id);
+    public User selectUserById(String id) {
+        return userMapper.selectUserById(id);
     }
 }

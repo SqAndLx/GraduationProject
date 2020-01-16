@@ -3,5 +3,10 @@ package com.graduation.service;
 import com.graduation.mode.User;
 
 public interface  UserService {
-    User selectUser(String id);
+    /**
+     * 根据id查询用户信息
+     * @param id
+     * @return
+     */
+    User selectUserById(String id);
 }

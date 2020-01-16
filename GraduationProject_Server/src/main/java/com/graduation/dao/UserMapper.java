@@ -6,5 +6,10 @@ import com.graduation.mode.User;
 
 @Mapper
 public interface  UserMapper {
-    User selectUser(@Param("id") String id);
+    /**
+     * 根据id查寻用户信息
+     * @param id
+     * @return
+     */
+    User selectUserById(@Param("id") String id);
 }
