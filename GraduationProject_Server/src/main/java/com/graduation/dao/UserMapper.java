@@ -1,8 +1,8 @@
-package com.graduation.user.dao;
+package com.graduation.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import com.graduation.user.mode.User;
+import com.graduation.mode.User;
 
 @Mapper
 public interface  UserMapper {

@@ -1,4 +1,4 @@
-package com.graduation.tjje.controller;
+package com.graduation.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

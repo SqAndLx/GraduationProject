@@ -1,10 +1,10 @@
-package com.graduation.user.serviceImpl;
+package com.graduation.serviceImpl;
 
-import com.graduation.user.service.UserService;
+import com.graduation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.graduation.user.dao.UserMapper;
-import com.graduation.user.mode.User;
+import com.graduation.dao.UserMapper;
+import com.graduation.mode.User;
 
 @Service
 public class UserServiceImpl implements UserService {
