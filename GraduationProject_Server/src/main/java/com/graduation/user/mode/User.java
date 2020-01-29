@@ -1,4 +1,4 @@
-package com.graduation.mode;
+package com.graduation.user.mode;
 
 import lombok.Data;
 

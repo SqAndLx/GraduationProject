@@ -1,7 +1,8 @@
-package com.graduation.controller;
+package com.graduation.user.controller;
 
-import com.graduation.mode.User;
-import com.graduation.service.UserService;
+
+import com.graduation.user.mode.User;
+import com.graduation.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

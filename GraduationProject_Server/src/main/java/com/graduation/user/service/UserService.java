@@ -1,6 +1,6 @@
-package com.graduation.service;
+package com.graduation.user.service;
 
-import com.graduation.mode.User;
+import com.graduation.user.mode.User;
 
 public interface  UserService {
     /**
