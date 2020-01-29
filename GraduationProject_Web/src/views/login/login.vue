@@ -34,7 +34,7 @@ export default {
             number: this.input,
             password: this.password
           }
-        axios.post('/api/Login', this.qs.stringify(saveParams))
+        axios.post('/axios/api/Login', this.qs.stringify(saveParams))
         .then((response) => {
             let ms = response.data
             if(ms){
