@@ -13,5 +13,33 @@
         from user
         where c_id = #{id}
     </select>
-
+<insert id="insertYg" parameterType="com.graduation.mode.User" >
+    INSERT INTO personnel(c_id,c_name, c_sex, c_tel, c_remarks,f_salary)
+    VALUES (
+    REPLACE(UUID(), '-', ''),#{name},#{sex},#{tel},#{remarks},#{salary})
+</insert>
+    <update id="updateYg" parameterType="com.graduation.mode.User">
+        update personnel
+        <set>
+            <if test="name != null" >
+                c_name =#{name},
+            </if>
+            <if test="sex != null" >
+                c_sex =#{sex},
+            </if>
+            <if test="tel != null" >
+                c_tel =#{tel},
+            </if>
+            <if test="remarks != null" >
+                c_remarks =#{remarks},
+            </if>
+            <if test="salary != null" >
+                f_salary =#{salary},
+            </if>
+        </set>
+        where c_id=#{id}
+    </update>
+    <select id="getYgxx" resultType="com.graduation.mode.User">
+        SELECT c_name name, c_sex sex, c_tel tel, c_remarks remarks,f_salary salary FROM personnel
+    </select>
 </mapper>
