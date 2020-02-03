@@ -19,13 +19,9 @@ public class LoginCotroller {
     private LoginService loginService;
     @ApiOperation(value = "登录", notes = "登录")
     @PostMapping(path = "/Login")
-    public boolean Login(@RequestParam(name = "number") String number , @RequestParam(name = "password") String password ) {
+    public Loginer Login(@RequestParam(name = "number") String number , @RequestParam(name = "password") String password ) {
         // 根据账号密码查询登录人
         Loginer loginer = loginService.getLoginerByNumberAndPassWord(number, password);
-        if(loginer!=null){
-            return true;
-        }else{
-            return false;
-        }
+        return loginer == null ? null : loginer;
     }
 }

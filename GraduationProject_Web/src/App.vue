@@ -13,7 +13,7 @@ export default {
 <style>
 #app {
   text-align: center;
-  width: 100%;
-  height: 750px;
+  width: 1366px;
+  height: 768px;
 }
 </style>

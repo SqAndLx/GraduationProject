@@ -1,7 +1,7 @@
 <template>
   <div class="all">
   <span class="font">账&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
-  <el-input placeholder="请输入账号" v-model="input" clearable class="input"></el-input>
+  <el-input placeholder="请输入账号" type = "text" show-word-limit clearable v-model="input" class="input"></el-input>
   <br>
   <span class="font">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
   <el-input placeholder="请输入密码" v-model="password" clearable class="password" show-password></el-input>
@@ -37,7 +37,9 @@ export default {
         axios.post('/axios/api/Login', this.qs.stringify(saveParams))
         .then((response) => {
             let ms = response.data
-            if(ms){
+            if(ms !== null){
+              // 将对象转换成json存在缓存中
+              window.localStorage.setItem('loginer', JSON.stringify(ms))
               this.$router.push({name:'home'})
             } else {
               this.$message.error('账号或密码错误！');
