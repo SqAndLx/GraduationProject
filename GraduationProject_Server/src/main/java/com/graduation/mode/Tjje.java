@@ -13,5 +13,12 @@ public class Tjje {
      * 理发师接待数量
      */
     private String cou;
-
+    /**
+     * 当年总计
+     */
+    private Integer total;
+    /**
+     * 当年盈利
+     */
+    private Integer yl;
 }

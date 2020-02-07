@@ -10,4 +10,10 @@ public interface TjjeService {
      * @return
      */
     List<Tjje> getBzt();
+
+    /**
+     * 当前年份盈利和总计
+     * @return
+     */
+    List<Tjje> getYlZj();
 }

@@ -45,6 +45,23 @@ public class TjjeController {
 
     }
 
+    /**
+     * 当前年份盈利和总计
+     * @return
+     */
+    @ApiOperation(value = "当前年份盈利和总计", notes = "当前年份盈利和总计")
+    @PostMapping(value = "/getYlZj")
+    public ResultData getYlZj(){
+        List<Tjje> list;
+        try {
+            list = tjjeService.getYlZj();
+
+        } catch (Exception e) {
+            list = null;
+            logger.error("获取当前年份盈利和总计出错", e);
+        }
+        return list != null ? ResultData.success(list) : ResultData.error(CodeMsg.SERVER_ERROR);
+    }
 
 }
 
