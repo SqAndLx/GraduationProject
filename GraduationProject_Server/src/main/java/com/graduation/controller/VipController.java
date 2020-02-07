@@ -90,4 +90,21 @@ public class VipController {
         return list != null ? ResultData.success(list) : ResultData.error(CodeMsg.SERVER_ERROR);
 
     }
+
+    /**
+     * 通过手机号查询会员
+     * @return
+     */
+    @ApiOperation(value = "通过手机号查询会员", notes = "通过手机号查询会员")
+    @PostMapping(value = "/selectHyByTel")
+    public ResultData selectHyByTel(@RequestParam(name = "tel") String tel ){
+        List<Vip> list;
+        try {
+            list = vipService.selectHyByTel(tel);
+        } catch (Exception e) {
+            list = null;
+            logger.error("通过手机号查询会员", e);
+        }
+        return list != null ? ResultData.success(list) : ResultData.error(CodeMsg.SERVER_ERROR);
+    }
 }

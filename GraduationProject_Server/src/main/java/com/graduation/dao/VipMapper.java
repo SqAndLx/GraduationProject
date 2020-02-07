@@ -21,4 +21,11 @@ public interface VipMapper {
      * @return
      */
     List<Vip> getHyxx();
+
+    /**
+     * 通过手机号查询会员信息
+     * @param tel
+     * @return
+     */
+    List<Vip> selectHyByTel(String tel);
 }

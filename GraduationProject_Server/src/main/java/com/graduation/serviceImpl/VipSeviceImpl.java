@@ -36,4 +36,10 @@ public class VipSeviceImpl implements VipService {
         List<Vip> list =vipMapper.getHyxx();
         return list;
     }
+
+    @Override
+    public List<Vip> selectHyByTel(String tel) {
+        List<Vip> list =vipMapper.selectHyByTel(tel);
+        return list;
+    }
 }
