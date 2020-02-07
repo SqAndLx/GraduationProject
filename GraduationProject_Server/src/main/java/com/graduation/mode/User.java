@@ -28,5 +28,5 @@ public class User {
     /**
      * 薪资
      */
-    private String salary;
+    private Float salary;
 }

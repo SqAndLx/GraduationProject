@@ -1,6 +1,5 @@
 package com.graduation.service;
 
-import com.graduation.mode.Tjje;
 import com.graduation.mode.User;
 
 import java.util.List;

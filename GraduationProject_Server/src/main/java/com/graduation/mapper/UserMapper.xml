@@ -40,6 +40,6 @@
         where c_id=#{id}
     </update>
     <select id="getYgxx" resultType="com.graduation.mode.User">
-        SELECT c_name name, c_sex sex, c_tel tel, c_remarks remarks,f_salary salary FROM personnel
+        SELECT c_id id ,c_name name, c_sex sex, c_tel tel, c_remarks remarks,f_salary salary FROM personnel
     </select>
 </mapper>
