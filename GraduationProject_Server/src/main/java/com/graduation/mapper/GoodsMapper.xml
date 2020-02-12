@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.graduation.dao.GoodsMapper">
+
+    <insert id="insertSp" parameterType="com.graduation.mode.Goods">
+    INSERT INTO practise.goods(c_id,c_name,f_price,n_number,f_cost)
+    VALUES (
+    REPLACE(UUID(), '-', ''),#{name},#{price},#{number},#{cost})
+</insert>
+    <update id="updateSp" parameterType="com.graduation.mode.Goods">
+        update practise.goods
+        <set>
+            <if test="name != null" >
+                c_name =#{name},
+            </if>
+            <if test="price != null" >
+                f_price =#{price},
+            </if>
+            <if test="number != null" >
+                n_number =#{number},
+            </if>
+            <if test="cost != null" >
+                f_cost =#{cost},
+            </if>
+
+        </set>
+        where c_id=#{id}
+    </update>
+    <select id="getSpxx" resultType="com.graduation.mode.Goods">
+        SELECT c_id id,c_name name,f_price price,n_number number,f_cost cost FROM practise.goods
+    </select>
+    <update id="updateKcById" >
+    update practise.goods
+    <set>
+    <if test="number != null" >
+        n_number = #{number}
+    </if>
+    </set>
+        where c_id=#{id}
+    </update>
+    <select id="getSpxxByLike"  resultType="com.graduation.mode.Goods">
+        SELECT c_id id,c_name name,f_price price,n_number number,f_cost cost
+        FROM practise.goods
+        <bind name="sp_name" value="'%' + name + '%'"/>
+        where  c_name LIKE #{sp_name}
+    </select>
+</mapper>

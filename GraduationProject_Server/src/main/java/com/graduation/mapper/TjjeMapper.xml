@@ -24,7 +24,7 @@
     </select>
     <select id="ylYsp" parameterType="String" resultType="Integer">
         select
-        sum(xf.c_hymoney)-sum(sp.c_cost)
+        sum(xf.c_hymoney)-sum(sp.f_cost)
         from purchase xf,goods sp
         where
         xf.c_goodsId = sp.c_id
