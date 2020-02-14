@@ -16,4 +16,9 @@ public interface TjjeService {
      * @return
      */
     List<Tjje> getYlZj();
+    /**
+     * 前5个月盈利和总计
+     * @return
+     */
+    List<Tjje> getYYlZj();
 }

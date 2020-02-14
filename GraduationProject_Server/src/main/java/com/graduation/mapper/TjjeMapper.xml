@@ -15,29 +15,30 @@
         GROUP BY
             ry.c_name
     </select>
-    <select id="getTotal" parameterType="String" resultType="Integer">
+    <select id="getTotal"  resultType="Integer">
         select
-        sum(c_money)
+        ifnull(sum(c_money),0)
         from purchase
         where
-        t_date BETWEEN #{month}  and #{tomYear}
+        t_date BETWEEN #{year}  and #{tomYear}
     </select>
-    <select id="ylYsp" parameterType="String" resultType="Integer">
+    <select id="ylYsp"  resultType="Integer">
         select
-        sum(xf.c_hymoney)-sum(sp.f_cost)
+        ifnull(sum(xf.c_hymoney)-sum(sp.f_cost),0)
         from purchase xf,goods sp
         where
         xf.c_goodsId = sp.c_id
         and
-        t_date BETWEEN #{month}  and #{tomYear}
+        t_date BETWEEN #{year}  and #{tomYear}
     </select>
-    <select id="ylWsp" parameterType="String" resultType="Integer">
+    <select id="ylWsp"  resultType="Integer">
         select
-        sum(c_hymoney)
+        ifnull(sum(c_hymoney),0)
         from purchase
         where
         c_goodsId is null
         and
-        t_date BETWEEN #{month}  and #{tomYear}
+        t_date BETWEEN #{year}  and #{tomYear}
     </select>
+
 </mapper>

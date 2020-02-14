@@ -62,7 +62,23 @@ public class TjjeController {
         }
         return list != null ? ResultData.success(list) : ResultData.error(CodeMsg.SERVER_ERROR);
     }
+    /**
+     * 统计前五个月各个月盈利合计，收入合计
+     * @return
+     */
+    @ApiOperation(value = "统计前五个月各个月盈利合计，收入合计", notes = "统计前五个月各个月盈利合计，收入合计")
+    @PostMapping(value = "/getYYlZj")
+    public ResultData getYYlZj(){
+        List<Tjje> list;
+        try {
+            list = tjjeService.getYYlZj();
 
+        } catch (Exception e) {
+            list = null;
+            logger.error("统计前五个月各个月盈利合计，收入合计出错", e);
+        }
+        return list != null ? ResultData.success(list) : ResultData.error(CodeMsg.SERVER_ERROR);
+    }
 }
 
 
