@@ -25,21 +25,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int insertYg(User user) {
+    public void insertYg(User user) {
         userMapper.insertYg(user);
-        return 1;
     }
 
     @Override
-    public int deleteYg(String id) {
+    public void deleteYg(String id) {
         userMapper.deleteYg(id);
-        return 1;
     }
 
     @Override
-    public int updateYg(User user) {
+    public void updateYg(User user) {
         userMapper.updateYg(user);
-        return 1;
     }
 
     @Override

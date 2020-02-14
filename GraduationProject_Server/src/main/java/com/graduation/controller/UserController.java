@@ -34,14 +34,13 @@ public class UserController {
     @PostMapping(path = "/insertYg")
     @ApiOperation(value = "新增员工账号", notes = "新增员工账号")
     public ResultData insertYg(@RequestBody User user){
-        int code;
         try {
-           code =userService.insertYg(user);
+            userService.insertYg(user);
         } catch (Exception e) {
-            code = 0;
             logger.error("新增员工出错", e);
+            return  ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
+        return ResultData.success(CodeMsg.SUCCESS);
 
     }
     /**
@@ -50,15 +49,13 @@ public class UserController {
     @PostMapping(path = "/deleteYg")
     @ApiOperation(value = "删除员工账号", notes = "删除员工账号")
     public ResultData deleteYg(@RequestParam(name = "id") String id ){
-        int code;
         try {
-            code =userService.deleteYg(id);
+            userService.deleteYg(id);
         } catch (Exception e) {
-            code = 0;
             logger.error("删除员工出错", e);
+            return  ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
-
+        return ResultData.success(CodeMsg.SUCCESS);
     }
 
     /**
@@ -67,15 +64,13 @@ public class UserController {
     @PostMapping(path = "/updateYg")
     @ApiOperation(value = "更新员工账号", notes = "更新员工账号")
     public ResultData updateYg(@RequestBody User user){
-        int code;
         try {
-            code =userService.updateYg(user);
+            userService.updateYg(user);
         } catch (Exception e) {
-            code = 0;
             logger.error("更新员工出错", e);
+            return  ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
-
+        return ResultData.success(CodeMsg.SUCCESS);
     }
     /**
      * 查询员工信息

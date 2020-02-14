@@ -9,16 +9,16 @@ public interface GoodsService {
     /**
      * 新增商品
      */
-    int insertSp(Goods goods);
+    void insertSp(Goods goods);
 
     /**
      * 删除商品
      */
-    int deleteSp(String id);
+    void deleteSp(String id);
     /**
      * 更新商品
      */
-    int updateSp(Goods goods);
+    void updateSp(Goods goods);
 
     /**
      * 查询商品信息
@@ -31,7 +31,7 @@ public interface GoodsService {
      * @param id
      * @return
      */
-    int updateKcById(String id,Integer number);
+    void updateKcById(String id,Integer number);
 
     /**
      * 模糊查询商品信息

@@ -15,21 +15,18 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsMapper goodsMapper;
 
     @Override
-    public int insertSp(Goods goods) {
+    public void insertSp(Goods goods) {
         goodsMapper.insertSp(goods);
-        return 1;
     }
 
     @Override
-    public int deleteSp(String id) {
+    public void deleteSp(String id) {
         goodsMapper.deleteSp(id);
-        return 1;
     }
 
     @Override
-    public int updateSp(Goods goods) {
+    public void updateSp(Goods goods) {
         goodsMapper.updateSp(goods);
-        return 1;
     }
 
     @Override
@@ -39,9 +36,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public int updateKcById(String id,Integer number) {
+    public void updateKcById(String id,Integer number) {
         goodsMapper.updateKcById(id,number);
-        return 1;
     }
 
     @Override

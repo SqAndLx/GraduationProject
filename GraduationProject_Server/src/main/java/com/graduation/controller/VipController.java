@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,14 +30,13 @@ public class VipController {
     @PostMapping(path = "/insertHy")
     @ApiOperation(value = "新增会员账号", notes = "新增会员账号")
     public ResultData insertHy(@RequestBody Vip vip){
-        int code;
         try {
-            code =vipService.insertHy(vip);
+            vipService.insertHy(vip);
         } catch (Exception e) {
-            code = 0;
             logger.error("新增会员出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
+        return ResultData.success(CodeMsg.SUCCESS);
 
     }
     /**
@@ -45,15 +45,13 @@ public class VipController {
     @PostMapping(path = "/deleteHy")
     @ApiOperation(value = "删除会员账号", notes = "删除会员账号")
     public ResultData deleteHy(@RequestParam(name = "id") String id ){
-        int code;
         try {
-            code =vipService.deleteHy(id);
+            vipService.deleteHy(id);
         } catch (Exception e) {
-            code = 0;
             logger.error("删除会员出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
-
+        return ResultData.success(CodeMsg.SUCCESS);
     }
 
     /**
@@ -62,15 +60,13 @@ public class VipController {
     @PostMapping(path = "/updateHy")
     @ApiOperation(value = "更新会员账号", notes = "更新会员账号")
     public ResultData updateHy(@RequestBody Vip vip){
-        int code;
         try {
-            code =vipService.updateHy(vip);
+            vipService.updateHy(vip);
         } catch (Exception e) {
-            code = 0;
             logger.error("更新会员出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
-
+        return ResultData.success(CodeMsg.SUCCESS);
     }
     /**
      * 查询会员信息

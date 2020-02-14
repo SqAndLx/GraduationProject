@@ -15,16 +15,16 @@ public interface  UserService {
     /**
      * 新增员工
      */
-    int insertYg(User user);
+    void insertYg(User user);
 
     /**
      * 删除员工
      */
-    int deleteYg(String id);
+    void deleteYg(String id);
     /**
      * 更新员工
      */
-    int updateYg(User user);
+    void updateYg(User user);
 
     /**
      * 查询员工信息

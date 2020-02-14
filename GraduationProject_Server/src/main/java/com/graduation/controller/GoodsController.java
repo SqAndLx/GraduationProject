@@ -29,14 +29,13 @@ public class GoodsController {
     @PostMapping(path = "/insertSp")
     @ApiOperation(value = "新增商品", notes = "新增商品")
     public ResultData insertSp(@RequestBody Goods goods){
-        int code;
         try {
-            code =goodsService.insertSp(goods);
+            goodsService.insertSp(goods);
         } catch (Exception e) {
-            code = 0;
             logger.error("新增商品出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
+        return  ResultData.success(CodeMsg.SUCCESS);
 
     }
     /**
@@ -45,15 +44,13 @@ public class GoodsController {
     @PostMapping(path = "/deleteSp")
     @ApiOperation(value = "删除商品", notes = "删除商品")
     public ResultData deleteSp(@RequestParam(name = "id") String id ){
-        int code;
         try {
-            code =goodsService.deleteSp(id);
+            goodsService.deleteSp(id);
         } catch (Exception e) {
-            code = 0;
             logger.error("通过id删除某商品出错", e);
+            return  ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
-
+        return  ResultData.success(CodeMsg.SUCCESS);
     }
 
     /**
@@ -62,14 +59,13 @@ public class GoodsController {
     @PostMapping(path = "/updateSp")
     @ApiOperation(value = "更新商品", notes = "更新商品")
     public ResultData updateSp(@RequestBody Goods goods){
-        int code;
         try {
-            code =goodsService.updateSp(goods);
+            goodsService.updateSp(goods);
         } catch (Exception e) {
-            code = 0;
             logger.error("更新商品出错", e);
+            return  ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
+        return  ResultData.success(CodeMsg.SUCCESS);
 
     }
     /**
@@ -97,14 +93,13 @@ public class GoodsController {
     @PostMapping(path = "/updateKcById")
     @ApiOperation(value = "通过商品id修改库存", notes = "通过商品id修改库存")
     public ResultData updateKcById(@RequestParam(name = "id") String id,@RequestParam(name = "number") Integer number){
-        int code;
         try {
-            code =goodsService.updateKcById(id,number);
+            goodsService.updateKcById(id,number);
         } catch (Exception e) {
-            code = 0;
             logger.error("通过商品id修改库存出错", e);
+            return  ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return code != 0 ? ResultData.success(code) : ResultData.error(CodeMsg.SERVER_ERROR);
+        return  ResultData.success(CodeMsg.SUCCESS);
 
     }
     /**

@@ -8,16 +8,16 @@ public interface VipService {
     /**
      * 新增会员
      */
-    int insertHy(Vip vip);
+    void insertHy(Vip vip);
 
     /**
      * 删除会员
      */
-    int deleteHy(String id);
+    void deleteHy(String id);
     /**
      * 更新会员
      */
-    int updateHy(Vip vip);
+    void updateHy(Vip vip);
 
     /**
      * 查询会员信息

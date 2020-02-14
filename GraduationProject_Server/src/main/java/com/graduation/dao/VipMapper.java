@@ -9,12 +9,12 @@ import java.util.List;
 @Mapper
 public interface VipMapper {
 
-    int insertHy(Vip vip);
+    void insertHy(Vip vip);
 
     @Delete("DELETE FROM vip WHERE c_id = #{id}")
-    int deleteHy(@Param("id") String id);
+    void deleteHy(@Param("id") String id);
 
-    int updateHy(Vip vip);
+    void updateHy(Vip vip);
 
     /**
      * 查询会员信息
@@ -28,4 +28,5 @@ public interface VipMapper {
      * @return
      */
     List<Vip> selectHyByTel(String tel);
+
 }

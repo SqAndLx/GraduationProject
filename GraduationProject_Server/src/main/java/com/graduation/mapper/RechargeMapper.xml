@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.graduation.dao.RechargeMapper">
+<update id="updateBalance" parameterType="com.graduation.mode.Recharge">
+    update practise.vip
+    <set>
+        <if test="rechargemoney != null" >
+            f_balance = f_balance + #{rechargemoney}
+        </if>
+    </set>
+    where c_id=#{id}
+</update>
+    <insert id="addJl" parameterType="com.graduation.mode.Recharge">
+        INSERT INTO practise.recharge(c_id,c_tel,n_rechargemoney,n_rechargeway,t_date,c_remarks)
+        VALUES (
+        REPLACE(UUID(), '-', ''),#{tel},#{rechargemoney},#{rechargeway},#{data},#{remarks})
+    </insert>
+</mapper>

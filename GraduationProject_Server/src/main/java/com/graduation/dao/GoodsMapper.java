@@ -13,17 +13,17 @@ public interface GoodsMapper {
     /**
      * 新增商品
      */
-    int insertSp(Goods goods);
+    void insertSp(Goods goods);
 
     /**
      * 删除商品
      */
     @Delete("DELETE FROM goods WHERE c_id = #{id}")
-    int deleteSp(String id);
+    void deleteSp(String id);
     /**
      * 更新商品
      */
-    int updateSp(Goods goods);
+    void updateSp(Goods goods);
 
     /**
      * 查询商品信息
@@ -36,7 +36,7 @@ public interface GoodsMapper {
      * @param id
      * @return
      */
-    int updateKcById(@Param("id") String id,@Param("number") Integer number);
+    void updateKcById(@Param("id") String id,@Param("number") Integer number);
 
     /**
      * 模糊查询商品信息

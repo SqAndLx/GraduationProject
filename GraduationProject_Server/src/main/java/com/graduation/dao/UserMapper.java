@@ -14,12 +14,12 @@ public interface  UserMapper {
      */
     User selectUserById(@Param("id") String id);
 
-    int insertYg(User user);
+    void insertYg(User user);
 
     @Delete("DELETE FROM personnel WHERE c_id = #{id}")
-    int deleteYg(@Param("id") String id);
+    void deleteYg(@Param("id") String id);
 
-    int updateYg(User user);
+    void updateYg(User user);
 
     /**
      * 查询员工信息

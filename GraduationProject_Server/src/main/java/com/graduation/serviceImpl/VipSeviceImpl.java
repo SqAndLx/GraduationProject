@@ -14,21 +14,18 @@ public class VipSeviceImpl implements VipService {
     private VipMapper vipMapper;
 
     @Override
-    public int insertHy(Vip vip) {
+    public void insertHy(Vip vip) {
         vipMapper.insertHy(vip);
-        return 1;
     }
 
     @Override
-    public int deleteHy(String id) {
+    public void deleteHy(String id) {
         vipMapper.deleteHy(id);
-        return 1;
     }
 
     @Override
-    public int updateHy(Vip vip) {
+    public void updateHy(Vip vip) {
         vipMapper.updateHy(vip);
-        return 1;
     }
 
     @Override
@@ -42,4 +39,5 @@ public class VipSeviceImpl implements VipService {
         List<Vip> list =vipMapper.selectHyByTel(tel);
         return list;
     }
+
 }
