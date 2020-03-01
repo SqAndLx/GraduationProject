@@ -5,7 +5,7 @@
       <span class="out" @click="dialogVisible = true">[ 注销 ]</span>
       <span class="hello">您好，{{name}} !</span>
       <el-dialog title="提示" :visible.sync="dialogVisible" width="25%">
-      <span>确定退出吗？</span>
+      <span style="font-size:18px">确定退出吗？</span>
       <span slot="footer" class="dialog-footer">
       <el-button @click="dialogVisible = false">取 消</el-button>
       <el-button type="primary" @click="dialogVisible = false,out()">确 定</el-button>
@@ -51,7 +51,7 @@ export default {
   font-size: 35px;
   float: left;
   margin-left: 1%;
-  margin-top: 0.5%;
+  margin-top: 1%;
   letter-spacing: 10px;
 }
 .hello{
@@ -60,14 +60,14 @@ export default {
   font-size: 20px;
   float: right;;
   margin-right: 2%;
-  margin-top: 2%
+  margin-top: 2.5%
 }
 .out{
   color: white;
   font-size: 16px;
   float: right;
   margin-right: 1%;
-  margin-top: 2%;
+  margin-top: 2.5%;
   cursor:pointer;
 }
 .out:hover{
