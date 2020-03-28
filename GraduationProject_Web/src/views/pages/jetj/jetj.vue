@@ -1,0 +1,24 @@
+<template>
+<div class="all">
+  
+</div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+    }
+  },
+  methods: {
+  },
+  created(){
+  }
+}
+</script>
+
+<style scoped>
+.all{
+  height: 100%;
+  width: 100%;
+}
+</style>
