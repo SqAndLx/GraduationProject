@@ -27,6 +27,6 @@ public interface VipMapper {
      * @param tel
      * @return
      */
-    List<Vip> selectHyByTel(String tel);
+    Vip selectHyByTel(String tel);
 
 }

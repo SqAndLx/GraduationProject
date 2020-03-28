@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -94,13 +93,12 @@ public class VipController {
     @ApiOperation(value = "通过手机号查询会员", notes = "通过手机号查询会员")
     @PostMapping(value = "/selectHyByTel")
     public ResultData selectHyByTel(@RequestParam(name = "tel") String tel ){
-        List<Vip> list;
+        Vip vip = null;
         try {
-            list = vipService.selectHyByTel(tel);
+             vip = vipService.selectHyByTel(tel);
         } catch (Exception e) {
-            list = null;
-            logger.error("通过手机号查询会员", e);
+            logger.error("通过手机号查询会员出错！", e);
         }
-        return list != null ? ResultData.success(list) : ResultData.error(CodeMsg.SERVER_ERROR);
+        return vip != null ? ResultData.success(vip) : ResultData.error(CodeMsg.SERVER_ERROR);
     }
 }

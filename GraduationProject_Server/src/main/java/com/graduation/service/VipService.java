@@ -30,5 +30,5 @@ public interface VipService {
      * @param tel
      * @return
      */
-    List<Vip> selectHyByTel(String tel);
+    Vip selectHyByTel(String tel);
 }

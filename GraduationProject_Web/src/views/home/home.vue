@@ -122,7 +122,7 @@ export default {
     font-size: 20px;
 }
 .el-tabs__nav-scroll {
-  width: 190px;
+  width: 193px;
 }
 .el-tabs--left .el-tabs__nav.is-left, .el-tabs--left .el-tabs__nav.is-right, .el-tabs--right .el-tabs__nav.is-left, .el-tabs--right .el-tabs__nav.is-right {
     transform: translateY(20px) !important;
