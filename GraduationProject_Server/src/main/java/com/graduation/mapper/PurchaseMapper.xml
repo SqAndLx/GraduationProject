@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.graduation.dao.PurchaseMapper">
+    <select id="getXfxx" resultType="com.graduation.mode.Purchase">
+       select a1.c_id id,a3.c_name name,a3.c_tel tel,a1.t_date data,a1.c_hymoney hymoney,a1.c_money money,a4.c_name detail,a2.c_name  barber,a5.c_name way
+        from practise.purchase a1
+        left join  practise.personnel a2 on a1.c_personnelId=a2.c_id
+        left join practise.vip a3 on a1.c_customerId = a3.c_id
+        left join practise.goods a4 on a1.c_goodsId = a4.c_id
+        left join practise.code a5 on a1.n_codeid = a5.n_codeid
+</select>
+</mapper>
