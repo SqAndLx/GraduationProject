@@ -37,10 +37,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
          */
         private ApiInfo apiInfo() {
             ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
-            apiInfoBuilder.title("酷酷美发系统");
-//            apiInfoBuilder.license("查看华宇接口服务许可");
-//            apiInfoBuilder.licenseUrl("http://www.thunisoft.com/");
-            apiInfoBuilder.description("酷酷美发系统各功能接口");
+            apiInfoBuilder.title("美酷理发店管理系统");
+            apiInfoBuilder.description("美酷理发店管理系统各功能接口");
             apiInfoBuilder.version("V1.0.0");
             return apiInfoBuilder.build();
         }
