@@ -2,7 +2,18 @@
   <div class="all">
     <div class="content">
       <div class="title">
-        <el-button type="primary" @click="dialogVisible = true">新增会员</el-button>
+        <div style="margin-top: 15px;">
+          <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
+            <el-select v-model="select" slot="prepend" placeholder="请选择" class="input-select">
+              <el-option label="姓名" value="1"></el-option>
+              <el-option label="会员号" value="2"></el-option>
+              <el-option label="办理人" value="3"></el-option>
+            </el-select>
+            <el-button slot="append" icon="el-icon-search"></el-button>
+          </el-input>
+          <el-button type="primary" @click="dialogVisible = true" icon="el-icon-plus" class="insert"></el-button>
+        </div>
+        <!--        <i class="el-icon-edit" @click="dialogVisible = true"></i>-->
         <el-dialog title="添  加  会  员" :visible.sync="dialogVisible" width="35%" :close-on-click-modal="false">
           <addMenu></addMenu>
         </el-dialog>
@@ -30,10 +41,12 @@
     export default {
         data() {
             return {
-                dialogVisible:false,
+                dialogVisible: false,
                 hyxxList: [],
                 currentPage: 1, //初始页
-                pagesize: 13,    //    每页的数据
+                pagesize: 8,    //    每页的数据
+                input3: '',
+                select: ''
             }
         },
         components: {
@@ -98,5 +111,21 @@
   .block {
     margin-right: -70%;
     margin-top: 2%;
+  }
+
+  .input-with-select {
+    background-color: #fff;
+    width: 500px;
+    float: left;
+    margin-left: 20px;
+  }
+
+  .insert {
+    float: right;
+    margin-right: 20px;
+  }
+
+  .input-select {
+    width: 100px;
   }
 </style>

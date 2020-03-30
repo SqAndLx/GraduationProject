@@ -2,11 +2,11 @@
   <div class="menu">
     <div class="select"><span class="font">手机号:</span>
       <el-input v-model="input" placeholder="请输入内容" class="selectbtn"></el-input>
-      <el-button type="primary" @click="selectUserInfo()">搜 索</el-button>
+      <el-button type="primary" icon="el-icon-search" @click="selectUserInfo()">搜 索</el-button>
     </div>
     <div class="vipMes" v-if="isVip">
       <el-divider class="line"></el-divider>
-      <div class="vipFont">会员信息:</div>
+      <div class="vipFont"><i class="el-icon-s-custom"></i> 会员信息:</div>
       <div class="for">
         <el-form :inline="true" :model="userInfo">
           <el-form-item label="姓   名:">
@@ -33,7 +33,7 @@
 
     <div class="payMes">
       <el-divider class="line"></el-divider>
-      <div class="payFont">消费信息:</div>
+      <div class="payFont"><i class="el-icon-s-order"></i>消费信息:</div>
       <div class="for">
         <el-form :inline="true" :model="formInline">
           <el-form-item label="消费项目:">
@@ -61,15 +61,19 @@
         <div class="result">
           <span v-if="!isVip" class="resultMoney">消费金额:{{money}}元</span>
           <span v-else class="resultMoney">折后价格:{{money}}元</span>
+          <span class="footerDiv">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">提交</el-button>
+          </span>
         </div>
       </div>
     </div>
-    <div class="footerDiv">
-      <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">提交</el-button>
-      </span>
-    </div>
+<!--    <div class="footerDiv">-->
+<!--      <span class="footerDiv">-->
+<!--            <el-button @click="dialogVisible = false">取 消</el-button>-->
+<!--            <el-button type="primary" @click="dialogVisible = false">提交</el-button>-->
+<!--      </span>-->
+<!--    </div>-->
   </div>
 </template>
 <script>
@@ -173,7 +177,7 @@
 <style scoped>
   .menu {
     width: 100%;
-    height: 550px;
+    height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -229,13 +233,7 @@
   }
 
   .footerDiv{
-    margin-top: 55px;
-  }
-
-  .dialog-footer {
-    margin-top: -33px;
-    right: 5%;
-    /*position: absolute;*/
+    line-height: 67px;
   }
 
   .dxk {
@@ -247,7 +245,7 @@
   }
 
   .result {
-    width: 410px;
+    width: 755px;
     height: 70px;
     margin-left: 2%;
   }
@@ -257,17 +255,18 @@
     line-height: 67px;
     float: left;
   }
-  .el-button--primary {
-    margin-left: 20%;
-    margin-top: 1%;
-  }
 
-  .el-form-item__label {
-    margin-left: 12px;
-    font-size: 20px !important;
-  }
+  .el-icon-s-order{
+   margin-right: 5px;
+}
 
+  .el-icon-s-custom {
+    margin-right: 5px;
+  }
   .selectMenu {
     width: 190px;
+  }
+  .btn{
+    margin-left: 20%;
   }
 </style>
