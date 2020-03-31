@@ -27,6 +27,7 @@
 import tables from './table.vue'
 import addMenu from './addMenu.vue'
 import axios from "axios"
+ import util from '../../../res/util.js'
 export default {
   data() {
     return {
@@ -52,11 +53,15 @@ export default {
       .then((response) => {
         if(response.data.code == '200'){
           this.xfjlList = response.data.data
+          for(var i in this.xfjlList){
+            // 处理时间类型数据
+            this.xfjlList[i].data = util.getTimeY(this.xfjlList[i].data);
+          }
         }
       }).catch((error) => {
       console.log(error)
       })
-    }
+    },
   },
   created(){
     this.getData();
