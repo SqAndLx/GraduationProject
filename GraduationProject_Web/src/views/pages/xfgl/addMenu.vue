@@ -38,12 +38,12 @@
         <el-form :inline="true" :model="formInline">
           <el-form-item label="消费项目:">
             <el-select v-model="xfxm" multiple placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in goodsList" :label="item.name" :value="item.id"></el-option>
+              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="理发技师:">
             <el-select v-model="lfs" placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in barberList"  :label="item.name" :value="item.id"></el-option>
+              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="支付方式:">

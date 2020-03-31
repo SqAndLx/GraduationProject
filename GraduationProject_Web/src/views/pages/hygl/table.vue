@@ -1,4 +1,4 @@
-<template >
+<template>
   <el-table :data="tableData.slice((currentPage-1)*8,currentPage*8)" border>
     <el-table-column type="index" width="65" align="center"></el-table-column>
     <el-table-column prop="name" label="姓名" width="150" align="center"></el-table-column>
@@ -10,13 +10,17 @@
     <el-table-column prop="updateName" label="办理人" width="200" align="center"></el-table-column>
     <el-table-column prop="balance" label="账户余额" width="150" align="center"></el-table-column>
     <el-table-column label="操作" width="230" align="center">
-      <el-button type="primary" icon="el-icon-edit"  circle @click="update()"></el-button>
-      <el-button type="danger" prop="id" icon="el-icon-delete"  circle @click="deleteHy(tableData[index].id)"></el-button>
+    <template slot-scope="scope">
+        <el-button type="primary" icon="el-icon-edit"  circle @click="update(scope.row)"></el-button>
+        <el-button type="danger"  icon="el-icon-delete"  circle @click="deleteHy(scope.row)"></el-button>
+    </template>
     </el-table-column>
   </el-table>
 </template>
 
 <script>
+import axios from "axios"
+import qs from 'qs'
     export default {
         name: "table",
         props: {
@@ -34,19 +38,22 @@
             },
         },
         methods: {
-            update() {
-                this.$message({
-                    message: '修改',
-                    type: 'warning'
-                });
-                // axios.post('/axios/api/deleteHy')
-                //     .then((response) => {
-                //         if (response.data.code == '200') {
-                //
-                //         }
-                //     }).catch((error) => {
-                //     console.log(error)
-                // })
+            update(val) {
+                let updateParams = {
+                    id:val.id,
+
+                }
+                 axios.post('/axios/api/updateHy', this.qs.stringify(updateParams))
+                     .then((response) => {
+                         if (response.data.code == '200') {
+                            this.$message({
+                                message: '修改成功',
+                                type: 'warning'
+                            });
+                         }
+                     }).catch((error) => {
+                     console.log(error)
+                 })
             },
             deleteHy(val) {
                     this.$confirm('将删除该会员, 是否继续?', '提示', {
@@ -54,9 +61,9 @@
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
-                        debugger
                         let deleteParams = {
-                            id: val
+                            id: val.id,
+                            name:val.name,
                         }
                         axios.post('/axios/api/deleteHy',this.qs.stringify(deleteParams))
                             .then((response) => {
@@ -64,17 +71,13 @@
                                     this.$message({
                                         message: '删除成功！',
                                         type: 'success'
-                                    });
+                                    })
+                                    this.$parent.getData()
                                 }
                             }).catch((error) => {
                             console.log(error)
                         })
-                    }).catch(() => {
-                        this.$message({
-                            type: 'info',
-                            message: '已取消删除'
-                        });
-                    });
+                    })
 
             }
         },
