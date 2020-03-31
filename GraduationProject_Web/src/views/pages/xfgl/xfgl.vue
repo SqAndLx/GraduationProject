@@ -1,8 +1,8 @@
 <template>
-<div class="all">
-  <div class="content">
-    <div class="btn">
-        <el-button type="primary" @click="dialogVisible = true">添加订单</el-button>
+  <div class="all">
+    <div class="content">
+      <div class="btn">
+        <el-button type="primary" @click="dialogVisible = true" icon="el-icon-plus" class="insert"></el-button>
         <el-dialog title="消 费 信 息" :visible.sync="dialogVisible" width="35%" :close-on-click-modal="false">
           <addMenu></addMenu>
         </el-dialog>
@@ -18,7 +18,7 @@
             layout="total, prev, pager, next, jumper"
             :total="xfjlList.length">
           </el-pagination>
-       </div>
+      </div>
     </div>
   </div>
 </div>
@@ -70,40 +70,46 @@ export default {
 </script>
 
 <style scoped>
-.all{
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-.content{
-  height:98%;
-  width: 99%;
-  border: 1px solid #a9c4df;
-  margin-left: 0.5%;
-  margin-top: 0.5%
-}
-.btn{
-  height: 10%;
-}
-.el-button--primary {
+  .all {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .content {
+    height: 98%;
+    width: 99%;
+    border: 1px solid #a9c4df;
+    margin-left: 0.5%;
+    margin-top: 0.5%
+  }
+
+  .btn {
+    height: 10%;
+  }
+
+  .el-button--primary {
     margin-left: 90%;
     margin-top: 1%;
     width: 8%;
     font-size: 18px
-}
-.table{
-  display:inline-block;
-  height: 90%;
-  width: 100%;
-}
-.tab{
-  width: 98% !important;
-  margin-left: 1%;
-}
-.block{
-  margin-right: -70%;
-  margin-top: 2%;
-}
+  }
+
+  .table {
+    display: inline-block;
+    height: 90%;
+    width: 100%;
+  }
+
+  .tab {
+    width: 98% !important;
+    margin-left: 1%;
+  }
+
+  .block {
+    margin-right: -70%;
+    margin-top: 2%;
+  }
 </style>
 <style>
 .el-dialog__title {

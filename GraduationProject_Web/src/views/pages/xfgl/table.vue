@@ -1,5 +1,5 @@
 <template>
-    <el-table :data="tableData.slice((currentPage-1)*13,currentPage*13)" border >
+    <el-table :data="tableData.slice((currentPage-1)*8,currentPage*8)" border >
         <el-table-column type="index" width="65" align="center"></el-table-column>
         <el-table-column prop="data" label="日期" width="230" align="center" value-format="yyyy-MM-dd"></el-table-column>
         <el-table-column prop="name" label="姓名" width="230" align="center"></el-table-column>
@@ -30,13 +30,10 @@
       },
     },
     methods: {
-      handleClick(row) {
-        console.log(row);
-      }
     },
     data() {
       return {
-        
+
       }
     }
   }
