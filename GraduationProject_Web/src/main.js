@@ -6,6 +6,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import qs from 'qs'
 import store from './store'
+import ECharts from 'vue-echarts'
+import 'echarts/lib/chart/pie'
+Vue.component('chart', ECharts)
 
 Vue.prototype.$axios = axios
 Vue.prototype.qs = qs
