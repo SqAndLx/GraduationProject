@@ -15,7 +15,7 @@
         </div>
         <!--        <i class="el-icon-edit" @click="dialogVisible = true"></i>-->
         <el-dialog title="添  加  会  员" :visible.sync="dialogVisible" width="35%" :close-on-click-modal="false">
-          <addMenu></addMenu>
+          <addVip></addVip>
         </el-dialog>
       </div>
       <div class="table">
@@ -37,6 +37,7 @@
 <script>
     import tables from './table.vue'
     import axios from "axios"
+    import addVip from "./addVip";
 
     export default {
         data() {

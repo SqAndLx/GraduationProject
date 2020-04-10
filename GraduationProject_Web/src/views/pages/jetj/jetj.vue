@@ -1,42 +1,44 @@
 <template>
   <div class="all" style="background: #f1f1f1;">
-    <!-- 概述 -->
-    <div class="gs-all">
-      <div class="gs">
-        <img src="../../../assets/gs.png" style="color: #2F80EC">
-        <span class="newTitle">概述</span>
+    <div class="content">
+      <!-- 概述 -->
+      <div class="gs-all">
+        <div class="gs">
+          <img src="../../../assets/gs.png" style="color: #2F80EC">
+          <span class="newTitle">概述</span>
+        </div>
+        <div class="wordkuang">
+          从{{this.tjq1}}到{{this.tjq2}}，美酷理发店共收入
+          <span style="cursor:text;color:#333;">10000</span>元，
+          其中，盈利
+          <span style="cursor:text;color:#333;">2546</span>元。
+        </div>
       </div>
-      <div class="wordkuang">
-        从{{this.tjq1}}到{{this.tjq2}}，美酷理发店共收入
-        <span style="cursor:text;color:#333;">10000</span>元，
-        其中，盈利
-        <span style="cursor:text;color:#333;">2546</span>元。
+      <!-- 柱状图-->
+      <div class="zzt-all">
+        <div class="zzt">
+          <img src="../../../assets/gs.png">
+          <span class="newTitle">近五月盈利、收入分析</span>
+        </div>
+        <p class="chartTitle" style="background-color:#f5f5f5">
+          <span style="float:right;margin-right:10px;">单位：元</span>
+        </p>
+        <div class="echartsZz">
+          <chart :options="zzOptions"></chart>
+        </div>
       </div>
-    </div>
-    <!-- 柱状图-->
-    <div class="zzt-all">
-      <div class="zzt">
-        <img src="../../../assets/gs.png">
-        <span class="newTitle">近五月盈利、收入分析</span>
-      </div>
-      <p class="chartTitle" style="background-color:#f5f5f5">
-        <span style="float:right;margin-right:10px;">单位：元</span>
-      </p>
-      <div class="echartsZz">
-        <chart :options="zzOptions"></chart>
-      </div>
-    </div>
-    <!-- 饼状图-->
-    <div class="zzt-all">
-      <div class="zzt">
-        <img src="../../../assets/gs.png">
-        <span class="newTitle">员工业绩分析</span>
-      </div>
-      <p class="chartTitle" style="background-color:#f5f5f5">
-        <span style="float:right;margin-right:10px;">单位：件</span>
-      </p>
-      <div class="echartsBz">
-        <chart :options="orgOptions"></chart>
+      <!-- 饼状图-->
+      <div class="zzt-all">
+        <div class="zzt">
+          <img src="../../../assets/gs.png">
+          <span class="newTitle">员工业绩分析</span>
+        </div>
+        <p class="chartTitle" style="background-color:#f5f5f5">
+          <span style="float:right;margin-right:10px;">单位：件</span>
+        </p>
+        <div class="echartsBz">
+          <chart :options="orgOptions"></chart>
+        </div>
       </div>
     </div>
   </div>
@@ -66,7 +68,7 @@
                     .then((response) => {
                         if (response.data.code == '200') {
                             for (var i = 0; i < response.data.data.length; i++) {
-                                this.bztData.push(response.data.data[i-1]);
+                                this.bztData.push(response.data.data[i - 1]);
                             }
                         }
                     }).catch((error) => {
@@ -135,7 +137,12 @@
     background: #fff;
   }
 
-  .zzt {
-
+  .content {
+    height: 98%;
+    width: 99%;
+    border: 1px solid #a9c4df;
+    margin-left: 0.5%;
+    margin-top: 0.5%
   }
+
 </style>
