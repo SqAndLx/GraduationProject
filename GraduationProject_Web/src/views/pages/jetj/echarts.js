@@ -1,9 +1,17 @@
 export default {
-  getOptions() {
+  getOptions(bztData) {
+    var servicedata = [];
+    for (var i = 0; i < bztData.length; i++) {
+      debugger
+      var obj = new Object();
+      obj.name = bztData[i].name;
+      obj.value = bztData[i].cou;
+      servicedata[i] = obj;
+    }
     let orgOptions = {
       title: {
-        text: '某站点用户访问来源',
-        subtext: '纯属虚构',
+        text: '员工业绩分析',
+        subtext: '美酷',
         left: 'center'
       },
       tooltip: {
@@ -13,21 +21,15 @@ export default {
       legend: {
         orient: 'vertical',
         left: 'left',
-        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        data: bztData.name
       },
       series: [
         {
-          name: '访问来源',
+          name: '这是什么',
           type: 'pie',
           radius: '55%',
           center: ['50%', '60%'],
-          data: [
-            {value: 335, name: '直接访问'},
-            {value: 310, name: '邮件营销'},
-            {value: 234, name: '联盟广告'},
-            {value: 135, name: '视频广告'},
-            {value: 1548, name: '搜索引擎'}
-          ],
+          data: servicedata,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -57,11 +59,17 @@ export default {
       yAxis: {},
       // Declare several bar series, each will be mapped
       // to a column of dataset.source by default.
-      series: [
-        {type: 'bar'},
-        {type: 'bar'},
-        {type: 'bar'}
-      ]
+      series:[]
+        // [
+        //   // {type: 'bar'},
+        //   // {type: 'bar'},
+        //   // {type: 'bar'}
+        //   {
+        //     name: '销量',
+        //     type: 'bar',
+        //     // data:data.data
+        //   }]
+
     };
     return zzOptions
   }

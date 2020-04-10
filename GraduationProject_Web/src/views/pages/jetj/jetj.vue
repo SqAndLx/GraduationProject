@@ -44,6 +44,7 @@
 
 <script>
     import echarts from './echarts.js'
+    import axios from "axios"
 
     export default {
         data() {
@@ -52,19 +53,33 @@
                 tjq1: '',
                 tjq2: '',
                 zzOptions: {},
+                bztData: [],
             }
         },
         methods: {
             getNowDate() {
                 this.tjq1 = new Date().getFullYear();
                 this.tjq2 = new Date().getFullYear() - 1;
+            },
+            getBzt() {
+                axios.post('/axios/api/bzt')
+                    .then((response) => {
+                        if (response.data.code == '200') {
+                            for (var i = 0; i < response.data.data.length; i++) {
+                                this.bztData.push(response.data.data[i-1]);
+                            }
+                        }
+                    }).catch((error) => {
+                    console.log(error)
+                })
             }
         },
         created() {
             this.getNowDate();
+            this.getBzt();//获取饼状图数据
         },
         mounted() {
-            this.orgOptions = echarts.getOptions();
+            this.orgOptions = echarts.getOptions(this.bztData);
             this.zzOptions = echarts.getZzOptions();
         }
     }
