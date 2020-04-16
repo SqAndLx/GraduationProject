@@ -15,5 +15,6 @@ export default {
   text-align: center;
   width: 100%;
   height: 937px;
+  overflow: hidden;
 }
 </style>

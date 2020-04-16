@@ -1,5 +1,5 @@
 <template>
-    添加会员弹出框
+    <div>添加会员弹出框</div>
 </template>
 
 <script>

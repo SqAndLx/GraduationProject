@@ -1,5 +1,6 @@
 <template>
-添加员工弹框
+<!-- 添加员工弹框 -->
+<div>添加员工弹框</div>
 </template>
 
 <script>

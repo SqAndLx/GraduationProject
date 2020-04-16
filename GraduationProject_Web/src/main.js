@@ -8,6 +8,10 @@ import qs from 'qs'
 import store from './store'
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/pie'
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/legend'
+import 'echarts/lib/component/grid'
 Vue.component('chart', ECharts)
 
 Vue.prototype.$axios = axios

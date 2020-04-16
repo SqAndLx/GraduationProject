@@ -1,10 +1,10 @@
 <template>
-  <div class="all" style="background: #f1f1f1;">
+  <div class="all">
     <div class="content">
       <!-- 概述 -->
       <div class="gs-all">
         <div class="gs">
-          <img src="../../../assets/gs.png" style="color: #2F80EC">
+          <img src="../../../assets/gs.png" style="color: #2F80EC" />
           <span class="newTitle">概述</span>
         </div>
         <div class="wordkuang">
@@ -17,27 +17,27 @@
       <!-- 柱状图-->
       <div class="zzt-all">
         <div class="zzt">
-          <img src="../../../assets/gs.png">
+          <img src="../../../assets/gs.png" />
           <span class="newTitle">近五月盈利、收入分析</span>
         </div>
         <p class="chartTitle" style="background-color:#f5f5f5">
           <span style="float:right;margin-right:10px;">单位：元</span>
         </p>
-        <div class="echartsZz">
-          <chart :options="zzOptions"></chart>
-        </div>
+        <!-- <div class="echartsZz"> -->
+          <chart :options="zzOptions" id="zztEchars"></chart>
+        <!-- </div> -->
       </div>
       <!-- 饼状图-->
-      <div class="zzt-all">
-        <div class="zzt">
-          <img src="../../../assets/gs.png">
+      <div class="bzt-all">
+        <div class="bzt">
+          <img src="../../../assets/gs.png" />
           <span class="newTitle">员工业绩分析</span>
         </div>
         <p class="chartTitle" style="background-color:#f5f5f5">
           <span style="float:right;margin-right:10px;">单位：件</span>
         </p>
         <div class="echartsBz">
-          <chart :options="orgOptions"></chart>
+          <chart :options="orgOptions" id="bztEchars"></chart>
         </div>
       </div>
     </div>
@@ -56,6 +56,7 @@
                 tjq2: '',
                 zzOptions: {},
                 bztData: [],
+                zztData: []
             }
         },
         methods: {
@@ -67,9 +68,19 @@
                 axios.post('/axios/api/bzt')
                     .then((response) => {
                         if (response.data.code == '200') {
-                            for (var i = 0; i < response.data.data.length; i++) {
-                                this.bztData.push(response.data.data[i - 1]);
-                            }
+                          this.bztData = response.data.data
+                          this.orgOptions = echarts.getOptions(this.bztData);
+                        }
+                    }).catch((error) => {
+                    console.log(error)
+                })
+            },
+            getZzt() {
+                axios.post('/axios/api/getYYlZj')
+                    .then((response) => {
+                        if (response.data.code == '200') {
+                          this.zztData = response.data.data
+                          this.zzOptions = echarts.getZzOptions(this.zztData);
                         }
                     }).catch((error) => {
                     console.log(error)
@@ -77,72 +88,102 @@
             }
         },
         created() {
-            this.getNowDate();
-            this.getBzt();//获取饼状图数据
+            this.getNowDate();//获取概述时间
         },
         mounted() {
-            this.orgOptions = echarts.getOptions(this.bztData);
-            this.zzOptions = echarts.getZzOptions();
+          this.getBzt();//获取饼状图数据
+          this.getZzt();//获取饼状图数据
         }
     }
 </script>
 
 <style scoped>
-  .all {
-    height: 100%;
-    width: 100%;
-  }
+.all {
+  height: 100%;
+  width: 100%;
+}
 
-  .gs,
-  .zzt {
-    border-bottom: 3px solid #409EFF;
-    background: #f1f1f1;
-    padding: 15px;
-    text-align: left;
-  }
+.gs,
+.zzt,
+.bzt {
+  border-bottom: 3px solid #409eff;
+  background: #f1f1f1;
+  padding: 15px;
+  text-align: left;
+}
+.zzt{
+  overflow: auto
+}
+.gs img {
+  height: 20px;
+  padding-right: 5px;
+  width: 20px;
+}
 
-  .gs img {
-    height: 20px;
-    padding-right: 5px;
-    width: 20px;
-  }
+.zzt img {
+  height: 20px;
+  padding-right: 5px;
+  width: 20px;
+}
 
-  .zzt img {
-    height: 20px;
-    padding-right: 5px;
-    width: 20px;
-  }
+.bzt img {
+  height: 20px;
+  padding-right: 5px;
+  width: 20px;
+}
 
-  .newTitle {
-    font-size: 20px;
-    color: #409EFF;
-    font-weight: bolder;
-  }
+.newTitle {
+  font-size: 20px;
+  color: #409eff;
+  font-weight: bolder;
+}
 
-  .wordkuang {
-    text-indent: 3em;
-    color: #333;
-    padding: 10px;
-    text-align: left;
-  }
+.wordkuang {
+  text-indent: 3em;
+  color: #333;
+  padding: 10px;
+  text-align: left;
+}
 
-  .wordkuang span {
-    color: #409EFF;
-    cursor: pointer;
-  }
+.wordkuang span {
+  color: #409eff;
+  cursor: pointer;
+}
 
-  .gs-all,
-  .zzt-all {
-    margin: 10px 10px 0 10px;
-    background: #fff;
-  }
+.gs-all {
+  margin: 10px 10px 0 10px;
+  background: #fff;
+  height: 15%;
+  /* background-color: red; */
+}
+.zzt-all {
+  margin: 10px 10px 0 10px;
+  background: #fff;
+  height: 40%;
+  /* background-color: green; */
+}
+.bzt-all {
+  margin: 10px 10px 0 10px;
+  background: #fff;
+  height: 40%;
+  /* background-color: yellow; */
+}
 
-  .content {
-    height: 98%;
-    width: 99%;
-    border: 1px solid #a9c4df;
-    margin-left: 0.5%;
-    margin-top: 0.5%
-  }
-
+.content {
+  height: 98%;
+  width: 99%;
+  border: 1px solid #a9c4df;
+  margin-left: 0.5%;
+  margin-top: 0.5%;
+}
+#bztEchars {
+  position: relative;
+  top: -105px;
+}
+#zztEchars{
+  position: relative;
+  height: 80%;
+  width: 60%;
+  top: 0;
+}
 </style>
