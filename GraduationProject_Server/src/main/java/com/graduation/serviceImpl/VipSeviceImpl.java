@@ -40,4 +40,10 @@ public class VipSeviceImpl implements VipService {
         return vip;
     }
 
+    @Override
+    public List<Vip> selectHyByZd(String zd, String valu) {
+        List<Vip> list =vipMapper.selectHyByZd(zd,valu);
+        return list;
+    }
+
 }

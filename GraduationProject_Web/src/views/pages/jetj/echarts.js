@@ -15,7 +15,7 @@ export default {
       },
       tooltip: {
         trigger: 'item',
-        formatter: '{a} <br/>{b} : {c} ({d}%)'
+        formatter: '{a} <br/>{b} : {c}件 ({d}%)'
       },
       legend: {
         orient: 'horizontal',
@@ -25,7 +25,7 @@ export default {
       },
       series: [
         {
-          name: '这是什么',
+          name: '本月員工業績情況',
           type: 'pie',
           radius: '55%',
           center: ['50%', '60%'],
@@ -57,11 +57,10 @@ export default {
       srdata.push(srObj)
       yldata.push(ylObj)
     }
-    console.log(yldata)
-    console.log(srdata)
       let option = {
         legend: {},
-        tooltip: {},
+        tooltip: {
+        },
         legend: {
           orient: 'horizontal',
           x: 'right',
@@ -84,11 +83,11 @@ export default {
         dataset: {
             dimensions: ['product', '盈利', '收入'],
             source: [
-                {product: '1月', '盈利': 43.3, '收入': 85.8},
-                {product: '2月', '盈利': 83.1, '收入': 73.4},
-                {product: '3月', '盈利': 86.4, '收入': 65.2},
-                {product: '4月', '盈利': 72.4, '收入': 53.9},
-                {product: '5月', '盈利': 72.4, '收入': 53.9}
+                {product: '1月', '盈利': yldata[4], '收入': srdata[4]},
+                {product: '2月', '盈利': yldata[3], '收入': srdata[3]},
+                {product: '3月', '盈利': yldata[2], '收入': srdata[2]},
+                {product: '4月', '盈利': yldata[1], '收入': srdata[1]},
+                {product: '5月', '盈利': yldata[0], '收入': srdata[0]}
             ]
         },
         xAxis: {type: 'category'},
@@ -108,7 +107,7 @@ export default {
     // },
     // tooltip : {
     //     trigger: 'item',
-    //     formatter: "{a} <br/>{b} : {c}"
+    //     formatter: "{a} <br/>{b} : {c}"+
     // },
     // toolbox: {
     //     show : true,

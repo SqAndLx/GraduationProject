@@ -3,14 +3,13 @@
     <div class="content">
       <div class="title">
         <div style="margin-top: 15px;">
-          <el-button type="primary" @click="dialogVisible = true" icon="el-icon-plus" class="insert"></el-button>
+          <el-button type="primary" @click="openDialog()" icon="el-icon-plus" class="insert"></el-button>
         </div>
-        <!--        <i class="el-icon-edit" @click="dialogVisible = true"></i>-->
-        <el-dialog title="添  加  员 工" :visible.sync="dialogVisible" width="35%" :close-on-click-modal="false">
-          <addUsr></addUsr>
+        <el-dialog title="添  加  员 工" :visible.sync="dialogVisible" width="35%">
+          <addUsr @getData="getData" @closeDialog = "closeDialog"></addUsr>
         </el-dialog>
       </div>
-      <div class="table">
+      <div class="table1">
         <tables class="tab" :tableData="ryxxList" :currentPage="currentPage"></tables>
         <div class="block">
           <el-pagination
@@ -27,7 +26,7 @@
   </div>
 </template>
 <script>
-    import tables from './table.vue'
+    import tables from './ryglTable.vue'
     import axios from "axios"
     import AddUsr from "./addUsr";
 
@@ -45,6 +44,12 @@
             tables
         },
         methods: {
+            openDialog() {
+              this.dialogVisible = true
+            },
+            closeDialog() {
+              this.dialogVisible = false
+            },
             getData() {
                 axios.post('/axios/api/getYgxx')
                     .then((response) => {
@@ -88,7 +93,7 @@
     margin-top: 0.5%
   }
 
-  .table {
+  .table1 {
     display: inline-block;
     height: 90%;
     width: 100%;

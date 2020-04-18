@@ -79,10 +79,10 @@ public class VipController {
         try {
             list = vipService.getHyxx();
         } catch (Exception e) {
-            list = null;
             logger.error("查询会员信息出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return list != null ? ResultData.success(list) : ResultData.error(CodeMsg.SERVER_ERROR);
+        return ResultData.success(list);
 
     }
 
@@ -93,12 +93,26 @@ public class VipController {
     @ApiOperation(value = "通过手机号查询会员", notes = "通过手机号查询会员")
     @PostMapping(value = "/selectHyByTel")
     public ResultData selectHyByTel(@RequestParam(name = "tel") String tel ){
-        Vip vip = null;
+        Vip vip;
         try {
              vip = vipService.selectHyByTel(tel);
         } catch (Exception e) {
             logger.error("通过手机号查询会员出错！", e);
+            return  ResultData.error(CodeMsg.SERVER_ERROR);
         }
-        return vip != null ? ResultData.success(vip) : ResultData.error(CodeMsg.SERVER_ERROR);
+        return ResultData.success(vip);
+    }
+
+    @ApiOperation(value = "动态传入字段进行模糊查询", notes = "动态传入字段进行模糊查询")
+    @PostMapping(value = "/selectHyByZd")
+    public ResultData selectHyByZd(@RequestParam(name = "zd") String zd,@RequestParam(name = "valu") String valu ){
+        List<Vip> list;
+        try {
+            list = vipService.selectHyByZd(zd,valu);
+        } catch (Exception e) {
+            logger.error("动态传入字段进行模糊查询出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
+        }
+        return ResultData.success(list);
     }
 }

@@ -10,22 +10,22 @@
       <div class="for">
         <el-form :inline="true" :model="userInfo">
           <el-form-item label="姓   名:">
-            <el-input v-model="userInfo.name" disabled="true"></el-input>
+            <el-input v-model="userInfo.name" :disabled="true"></el-input>
           </el-form-item>
           <el-form-item label="会员等级:">
-            <el-input v-model="userInfo.grade" disabled="true"></el-input>
+            <el-input v-model="userInfo.grade" :disabled="true"></el-input>
           </el-form-item>
           <el-form-item label="电   话:">
-            <el-input v-model="userInfo.tel" disabled="true"></el-input>
+            <el-input v-model="userInfo.tel" :disabled="true"></el-input>
           </el-form-item>
           <el-form-item label="会员积分:">
-            <el-input v-model="userInfo.integral" disabled="true"></el-input>
+            <el-input v-model="userInfo.integral" :disabled="true"></el-input>
           </el-form-item>
           <el-form-item label="性   别:">
-            <el-input v-model="userInfo.sex" disabled="true"></el-input>
+            <el-input v-model="userInfo.sex" :disabled="true"></el-input>
           </el-form-item>
           <el-form-item label="账户余额:">
-            <el-input v-model="userInfo.balance" disabled="true"></el-input>
+            <el-input v-model="userInfo.balance" :disabled="true"></el-input>
           </el-form-item>
         </el-form>
       </div>
@@ -38,12 +38,12 @@
         <el-form :inline="true" :model="formInline">
           <el-form-item label="消费项目:">
             <el-select v-model="xfxm" multiple placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item.name"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="理发技师:">
             <el-select v-model="lfs" placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item.name"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="支付方式:">
@@ -53,8 +53,8 @@
           </el-form-item>
           <el-form-item label="是否会员:">
             <div class="dxk">
-              <el-radio v-model="radio" label="1" disabled="true">是</el-radio>
-              <el-radio v-model="radio" label="2" disabled="true">否</el-radio>
+              <el-radio v-model="radio" label="1" :disabled="true">是</el-radio>
+              <el-radio v-model="radio" label="2" :disabled="true">否</el-radio>
             </div>
           </el-form-item>
         </el-form>

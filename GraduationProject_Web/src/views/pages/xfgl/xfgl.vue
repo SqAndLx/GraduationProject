@@ -24,7 +24,7 @@
 </div>
 </template>
 <script>
-import tables from './table.vue'
+import tables from './xfglTable.vue'
 import addMenu from './addMenu.vue'
 import axios from "axios"
  import util from '../../../res/util.js'

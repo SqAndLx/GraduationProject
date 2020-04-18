@@ -18,6 +18,7 @@ Vue.prototype.$axios = axios
 Vue.prototype.qs = qs
 // Vue.config.productionTip = false
 Vue.use(ElementUI)
+window.bus = new Vue({}) 
 new Vue({
   el: '#app',
   router,

@@ -8,10 +8,12 @@
           <span class="newTitle">概述</span>
         </div>
         <div class="wordkuang">
-          从{{this.tjq1}}到{{this.tjq2}}，美酷理发店共收入
-          <span style="cursor:text;color:#333;">10000</span>元，
+          从{{this.tjq2}}到{{this.tjq1}}，美酷理发店共收入
+          <span
+            style="cursor:text;color:#333;"
+          >{{this.gsData.yl}}</span>元，
           其中，盈利
-          <span style="cursor:text;color:#333;">2546</span>元。
+          <span style="cursor:text;color:#333;">{{this.gsData.total}}</span>元。
         </div>
       </div>
       <!-- 柱状图-->
@@ -24,7 +26,7 @@
           <span style="float:right;margin-right:10px;">单位：元</span>
         </p>
         <!-- <div class="echartsZz"> -->
-          <chart :options="zzOptions" id="zztEchars"></chart>
+        <chart :options="zzOptions" id="zztEchars"></chart>
         <!-- </div> -->
       </div>
       <!-- 饼状图-->
@@ -45,56 +47,74 @@
 </template>
 
 <script>
-    import echarts from './echarts.js'
-    import axios from "axios"
+import echarts from "./echarts.js";
+import axios from "axios";
 
-    export default {
-        data() {
-            return {
-                orgOptions: {},
-                tjq1: '',
-                tjq2: '',
-                zzOptions: {},
-                bztData: [],
-                zztData: []
-            }
-        },
-        methods: {
-            getNowDate() {
-                this.tjq1 = new Date().getFullYear();
-                this.tjq2 = new Date().getFullYear() - 1;
-            },
-            getBzt() {
-                axios.post('/axios/api/bzt')
-                    .then((response) => {
-                        if (response.data.code == '200') {
-                          this.bztData = response.data.data
-                          this.orgOptions = echarts.getOptions(this.bztData);
-                        }
-                    }).catch((error) => {
-                    console.log(error)
-                })
-            },
-            getZzt() {
-                axios.post('/axios/api/getYYlZj')
-                    .then((response) => {
-                        if (response.data.code == '200') {
-                          this.zztData = response.data.data
-                          this.zzOptions = echarts.getZzOptions(this.zztData);
-                        }
-                    }).catch((error) => {
-                    console.log(error)
-                })
-            }
-        },
-        created() {
-            this.getNowDate();//获取概述时间
-        },
-        mounted() {
-          this.getBzt();//获取饼状图数据
-          this.getZzt();//获取饼状图数据
-        }
+export default {
+  data() {
+    return {
+      orgOptions: {},
+      tjq1: "",
+      tjq2: "",
+      zzOptions: {},
+      bztData: [],
+      zztData: [],
+      gsData: {}
+    };
+  },
+  methods: {
+    getNowDate() {
+      this.tjq1 = new Date().getFullYear();
+      this.tjq2 = new Date().getFullYear() - 1;
+    },
+    getBzt() {
+      axios
+        .post("/axios/api/bzt")
+        .then(response => {
+          if (response.data.code == "200") {
+            this.bztData = response.data.data;
+            this.orgOptions = echarts.getOptions(this.bztData);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getZzt() {
+      axios
+        .post("/axios/api/getYYlZj")
+        .then(response => {
+          if (response.data.code == "200") {
+            this.zztData = response.data.data;
+            this.zzOptions = echarts.getZzOptions(this.zztData);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getGs() {
+      axios
+        .post("/axios/api/getYlZj")
+        .then(response => {
+          if (response.data.code == "200") {
+            this.gsData = response.data.data[0];
+            this.getNowDate(); //获取概述时间
+            console.log(this.gsData);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
+  },
+  created() {},
+  mounted() {
+    this.getBzt(); //获取饼状图数据
+    this.getZzt(); //获取饼状图数据
+    this.getGs(); //获取概述数据
+  }
+};
 </script>
 
 <style scoped>
@@ -111,8 +131,8 @@
   padding: 15px;
   text-align: left;
 }
-.zzt{
-  overflow: auto
+.zzt {
+  overflow: auto;
 }
 .gs img {
   height: 20px;
@@ -180,7 +200,7 @@
   position: relative;
   top: -105px;
 }
-#zztEchars{
+#zztEchars {
   position: relative;
   height: 80%;
   width: 60%;
