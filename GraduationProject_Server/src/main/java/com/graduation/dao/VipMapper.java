@@ -29,4 +29,12 @@ public interface VipMapper {
      */
     Vip selectHyByTel(String tel);
 
+    /**
+     * 动态传入字段进行模糊查询
+     * @param zd
+     * @param valu
+     * @return
+     */
+    List<Vip> selectHyByZd(@Param("zd")String zd,@Param("valu")String valu);
+
 }
