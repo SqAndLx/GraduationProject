@@ -1,6 +1,7 @@
 package com.graduation.service;
 
 import com.graduation.mode.Loginer;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface LoginService {
 
@@ -11,4 +12,11 @@ public interface LoginService {
      * @return
      */
     Loginer getLoginerByNumberAndPassWord(String number, String password);
+
+    /**
+     * 修改密码
+     * @param number
+     * @param password
+     */
+    void updateMm(String number,String password);
 }

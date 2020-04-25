@@ -100,8 +100,7 @@ export default {
 .out:hover{
   color: red;
 }
-.all{
-}
+
 .conten{
   width: 90%;
   height: 867px;

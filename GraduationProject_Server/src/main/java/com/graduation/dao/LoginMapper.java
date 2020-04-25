@@ -13,4 +13,11 @@ public interface LoginMapper {
      * @return
      */
     Loginer getLoginerByNumberAndPassWord(String number, String password);
+
+    /**
+     * 修改密码
+     * @param number
+     * @param password
+     */
+    void updateMm(String number,String password);
 }

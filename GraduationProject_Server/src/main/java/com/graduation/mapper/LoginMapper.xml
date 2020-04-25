@@ -14,4 +14,12 @@
         from login
         where c_id = #{number} and c_password = #{password}
     </select>
+
+    <update id="updateMm" parameterType="String">
+        update practise.login
+        <set>
+            c_password = #{password},
+        </set>
+        where c_id=#{number}
+    </update>
 </mapper>

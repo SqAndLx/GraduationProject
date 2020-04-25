@@ -22,4 +22,9 @@ public class LoginServiceImpl implements LoginService {
     public Loginer getLoginerByNumberAndPassWord(String number, String password) {
         return loginMapper.getLoginerByNumberAndPassWord(number, password);
     }
+
+    @Override
+    public void updateMm(String number, String password) {
+        loginMapper.updateMm(number,password);
+    }
 }

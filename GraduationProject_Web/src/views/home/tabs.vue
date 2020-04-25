@@ -1,7 +1,7 @@
 <template>
 <div>
     <el-tabs :tab-position="tabPosition" v-model="actionName" type="border-card">
-        <el-tab-pane label="总金额统计" name="zjetj"></el-tab-pane>
+        <el-tab-pane label="统计详情" name="zjetj"></el-tab-pane>
         <el-tab-pane label="消费管理" name="xfgl"></el-tab-pane>
         <el-tab-pane label="会员管理" name="hygl"></el-tab-pane>
         <el-tab-pane label="人员管理" name="rygl" v-if="isAdmin"></el-tab-pane>

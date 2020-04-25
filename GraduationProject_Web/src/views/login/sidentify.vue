@@ -138,5 +138,6 @@ export default {
 .s-canvas canvas{
     margin-top: 1px;
     margin-left: 8px;
+    border-radius: 5px;
 }
 </style>

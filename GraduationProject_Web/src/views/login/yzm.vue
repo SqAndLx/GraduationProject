@@ -55,13 +55,16 @@ components: { SIdentify },
 </script>
 <style scoped>
 .code{
-    width:124px;
+    width:250px;
     height:31px;
     border:1px solid rgba(186,186,186,1);
+    border-radius: 5px;
+    padding-left: 15px;
 }
 .login-code{
      cursor: pointer;
-     margin-left: 2.5%
+     border-radius: 5px
+     /* margin-left: 11.5% */
 }
 .font{
     color: white;
