@@ -10,4 +10,14 @@
         left join practise.goods a4 on a1.c_goodsId = a4.c_id
         left join practise.code a5 on a1.n_codeid = a5.n_codeid
 </select>
+    <select id="getZk" resultType="com.graduation.mode.Purchase">
+        select c_type type from practise.purchase where c_id = '0000'
+    </select>
+    <update id="updateZk" parameterType="String">
+        update practise.purchase
+        <set>
+            c_type = #{type},
+        </set>
+        where c_id = '0000'
+    </update>
 </mapper>

@@ -58,7 +58,6 @@ export default {
       yldata.push(ylObj)
     }
       let option = {
-        legend: {},
         tooltip: {
         },
         legend: {

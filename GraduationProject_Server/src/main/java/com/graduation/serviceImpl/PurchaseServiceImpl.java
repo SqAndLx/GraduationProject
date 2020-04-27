@@ -18,4 +18,16 @@ public class PurchaseServiceImpl implements PurchaseService {
         List<Purchase> list =purchaseMapper.getXfxx();
         return list;
     }
+
+    @Override
+    public Purchase getZk() {
+        return purchaseMapper.getZk();
+    }
+
+    @Override
+    public void updateZk(String type) {
+        purchaseMapper.updateZk(type);
+    }
+
+
 }

@@ -44,4 +44,8 @@ public class Purchase {
      * 支付方式
      */
     private String way;
+    /**
+     * 配置项
+     */
+    private String type;
 }

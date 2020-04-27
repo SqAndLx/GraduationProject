@@ -9,9 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -42,5 +40,40 @@ public class PurchaseController {
         }
         return list != null ? ResultData.success(list) : ResultData.error(CodeMsg.SERVER_ERROR);
 
+    }
+
+    /**
+     * 获取折扣
+     * @return
+     * @Author ShiQing
+     */
+    @ApiOperation(value = "获取折扣", notes = "获取折扣")
+    @PostMapping(value = "/getZk")
+    public ResultData getZk() {
+        Purchase purchase;
+        try {
+            purchase = purchaseService.getZk();
+        } catch (Exception e) {
+            logger.error("获取折扣出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
+        }
+        return ResultData.success(purchase);
+    }
+
+    /**
+     * 修改折扣
+     * @param type
+     * @return
+     */
+    @ApiOperation(value = "修改折扣", notes = "修改折扣")
+    @GetMapping(path = "/updateZk")
+    public ResultData updateZk(@RequestParam(value = "type") String type ) {
+        try {
+            purchaseService.updateZk(type);
+        } catch (Exception e) {
+            logger.error("修改折扣出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
+        }
+        return ResultData.success(CodeMsg.SUCCESS);
     }
 }

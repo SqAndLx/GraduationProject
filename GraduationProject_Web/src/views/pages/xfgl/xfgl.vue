@@ -2,9 +2,9 @@
   <div class="all">
     <div class="content">
       <div class="btn">
-        <el-button type="primary" class="hyzk" @click="flag=false" @blur="updatezk()">
+        <el-button type="primary" class="hyzk" @click="flag=false" >
           会员:
-          <input v-model="zk" :disabled="flag" class="input" />折
+          <input v-model="zk" :disabled="flag" class="input" @blur="updatezk()"/>折
         </el-button>
         <el-button type="primary" @click="dialogVisible = true" icon="el-icon-plus" class="insert"></el-button>
         <el-dialog
@@ -44,7 +44,7 @@ export default {
       currentPage: 1, //初始页
       pagesize: 13, //    每页的数据
       xfjlList: [],
-      zk: "8",
+      zk: "",
       flag: true
     };
   },
@@ -54,7 +54,17 @@ export default {
   },
   methods: {
     updatezk() {
-      this.flag = true;
+        axios
+            .get("/axios/api/updateZk?type="+this.zk)
+            .then(response => {
+                if (response.data.code == "200") {
+                    this.$message.success("修改折扣成功！");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        this.flag = true;
     },
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
@@ -70,6 +80,9 @@ export default {
           if (response.data.code == "200") {
             this.xfjlList = response.data.data;
             for (var i in this.xfjlList) {
+                if(this.xfjlList[i].id == '0000'){
+                    this.xfjlList.splice(i,1)
+                }
               // 处理时间类型数据
               this.xfjlList[i].data = util.getTimeY(this.xfjlList[i].data);
             }
@@ -78,10 +91,24 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    }
+    },
+      getZk(){
+          axios
+              .post("/axios/api/getZk")
+              .then(response => {
+                  if (response.data.code == "200") {
+                      console.log(response)
+                      this.zk = response.data.data.type;
+                  }
+              })
+              .catch(error => {
+                  console.log(error);
+              });
+      }
   },
   created() {
     this.getData();
+    this.getZk();
   }
 };
 </script>
