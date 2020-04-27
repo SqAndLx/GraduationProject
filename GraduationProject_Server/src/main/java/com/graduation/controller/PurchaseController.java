@@ -86,7 +86,7 @@ public class PurchaseController {
      * @return
      */
     @ApiOperation(value = "添加消费记录", notes = "添加消费记录")
-    @GetMapping(path = "/addXfjl")
+    @PostMapping(path = "/addXfjl")
     public ResultData addXfjl( @RequestBody Purchase purchase ) {
         try {
             purchaseService.addXfjl(purchase);
