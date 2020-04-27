@@ -79,6 +79,7 @@
 <script>
     import axios from "axios"
     import qs from 'qs'
+    import util from "../../../res/util.js";
 
     export default {
         data() {
@@ -124,27 +125,29 @@
         },
         methods: {
           addXfjl() {
-            if(isVip){
-              let param = {
-              data : new Date(),
+            debugger
+            let param = {}
+            if(this.isVip){
+              param = {
+              data : util.getTimeY(new Date()),
               hymoney : this.money,
-              customerId : this.lfs.id,
+              customerId : this.userInfo.id,
               personnelId : this.lfs.id,
               goodsId : this.xfxm.id,
               codeId : this.value
               }
             } else {
-              let param = {
-              data : new Date(),
+              param = {
+              data : util.getTimeY(new Date()),
               money : this.money,
-              customerId : this.lfs.id,
+              customerId : this.userInfo.id,
               personnelId : this.lfs.id,
               goodsId : this.xfxm.id,
               codeId : this.value
               }
             }
             let url = '/axios/api/addXfjl'
-            axios.post(url, this.qs.stringify(saveParams)).then(() => {
+            axios.post(url, this.qs.stringify(param)).then(() => {
               if (response.data.code == '200') {
                 this.$message({
                     message: '添加成功！',
