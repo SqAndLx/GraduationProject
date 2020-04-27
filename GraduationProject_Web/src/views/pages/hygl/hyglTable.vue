@@ -12,12 +12,30 @@
       <el-table-column prop="balance" label="账户余额" width="150" align="center"></el-table-column>
       <el-table-column label="操作" width="230" align="center">
         <template slot-scope="scope">
+          <el-button type="primary" icon="el-icon-shopping-cart-full" title='充值' circle @click="openCzDialog(scope.row)"></el-button>
           <el-button type="primary" icon="el-icon-edit" circle @click="showUpdateLog(scope.row)"></el-button>
           <el-button type="danger" icon="el-icon-delete" circle @click="deleteHy(scope.row)"></el-button>
         </template>
       </el-table-column>
     </el-table>
     <div>
+      <el-dialog title="会 员 充 值" :visible.sync="czDialogVisible" width="35%">
+        <el-form label-width="150px">
+        <el-form-item label="账 户 的 当 前 余 额 :">
+           <el-input v-model="money"></el-input>
+          </el-form-item>
+          <el-form-item label="请 输 入 充 值 金 额 :">
+           <el-input v-model="czje" placeholder="请输入要充值的金额"></el-input>
+          </el-form-item>
+          <el-form-item label="充 值 后 账 户 余 额 :">
+           <el-input v-model="czhje"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="cz()">充值</el-button>
+            <el-button @click="czDialogVisible = false, czje = ''">取消</el-button>
+          </el-form-item>
+        </el-form>
+      </el-dialog>
       <el-dialog title="修改会员信息" :visible.sync="dialogVisible" width="35%">
         <el-form label-width="80px">
           <el-form-item label="姓   名:">
@@ -87,10 +105,62 @@ export default {
       tel: "",
       sex: "",
       grade: "",
-      id: ""
+      id: "",
+      czDialogVisible: false,
+      czje: '',
+      money: ''
     };
   },
+  computed: {
+    czhje() {
+      var reg=/^[0-9]+.?[0-9]*$/
+      if (!reg.test(this.czje) && this.czje !== '') {
+          this.$message({
+            message: "请输入数字！",
+            type: "warning"
+          });
+        return Number(this.money)
+      }
+      return Number(this.czje) + Number(this.money)
+    }
+  },
   methods: {
+    cz() {
+       var reg=/^[0-9]+.?[0-9]*$/
+      if (!reg.test(this.czje) || this.czje === '') {
+          this.$message({
+            message: "请输入正确的充值金额！",
+            type: "warning"
+          });
+        return
+      }
+      let updateParams = {
+        id: this.id,
+        rechargemoney: this.czje
+      };
+       axios
+        .post("/axios/api/recharge", updateParams)
+        .then((response) => {
+          if (response.data.code == "200") {
+            this.$message({
+              message: "充值成功",
+              type: "success"
+            });
+            this.$parent.getData();
+            this.czje = ''
+            this.czDialogVisible = false
+          } else {
+           this.$message.error('充值失败');
+          }
+        }).catch(error => {
+          console.log(error);
+        });
+    },
+    openCzDialog(data) {
+      this.id = data.id
+      this.czDialogVisible = true
+      this.money = data.balance
+    },
     showUpdateLog(val) {
       this.dialogVisible = true;
       this.grade = val.grade;

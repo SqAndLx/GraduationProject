@@ -54,6 +54,7 @@ export default {
   },
   methods: {
     updatezk() {
+      this.$store.commit('setZk', this.zk)
         axios
             .get("/axios/api/updateZk?type="+this.zk)
             .then(response => {

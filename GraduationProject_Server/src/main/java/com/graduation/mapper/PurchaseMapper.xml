@@ -20,4 +20,17 @@
         </set>
         where c_id = '0000'
     </update>
+    <insert id="addXfjl" parameterType="com.graduation.mode.Purchase">
+    INSERT INTO practise.Purchase(c_id,t_date,
+        <if test="hymoney!=null"> c_hymoney,</if>
+        <if test="money!=null">c_money,</if>
+        <if test="customerId!=null">c_customerId,</if>
+        c_goodsId,c_personnelId,n_codeid)
+    VALUES (
+    REPLACE(UUID(), '-', ''),#{data},
+        <if test="hymoney!=null"> #{hymoney},</if>
+        <if test="money!=null">#{money},</if>
+        <if test="customerId!=null">#{customerId},</if>
+        #{goodsId},#{personnelId},${codeId})
+    </insert>
 </mapper>

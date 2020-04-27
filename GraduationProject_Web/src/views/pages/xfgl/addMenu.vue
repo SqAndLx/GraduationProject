@@ -35,15 +35,15 @@
       <el-divider class="line"></el-divider>
       <div class="payFont"><i class="el-icon-s-order"></i>消费信息:</div>
       <div class="for">
-        <el-form :inline="true" :model="formInline">
+        <el-form :inline="true">
           <el-form-item label="消费项目:">
             <el-select v-model="xfxm" multiple placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item.name"></el-option>
+              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="理发技师:">
             <el-select v-model="lfs" placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item.name"></el-option>
+              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="支付方式:">
@@ -63,7 +63,7 @@
           <span v-else class="resultMoney">折后价格:{{money}}元</span>
           <span class="footerDiv">
             <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">提交</el-button>
+            <el-button type="primary" @click="dialogVisible = false,addXfjl()">提交</el-button>
           </span>
         </div>
       </div>
@@ -83,7 +83,7 @@
     export default {
         data() {
             return {
-                money: 100,
+                // money: 100,
                 radio: '2',
                 isVip: false,
                 userInfo: {},
@@ -104,11 +104,55 @@
                 }],
                 input: '',
                 value: '',
-                lfs:'',//理发师
+                lfs:0,//理发师
                 xfxm:''//消费项目
             }
         },
+        computed: {
+          money() {
+            let count = 0
+            for (let item of this.xfxm) {
+              count += Number(item.price)
+            }
+            count += Number(this.lfs.salary)
+            let zk = this.$store.state.zk
+            if (zk && zk !== 0 && this.radio === '1') {
+              return count * (Number(zk) / 10)
+            }
+            return count
+          }
+        },
         methods: {
+          addXfjl() {
+            if(isVip){
+              let param = {
+              data : new Date(),
+              hymoney : this.money,
+              customerId : this.lfs.id,
+              personnelId : this.lfs.id,
+              goodsId : this.xfxm.id,
+              codeId : this.value
+              }
+            } else {
+              let param = {
+              data : new Date(),
+              money : this.money,
+              customerId : this.lfs.id,
+              personnelId : this.lfs.id,
+              goodsId : this.xfxm.id,
+              codeId : this.value
+              }
+            }
+            let url = '/axios/api/addXfjl'
+            axios.post(url, this.qs.stringify(saveParams)).then(() => {
+              if (response.data.code == '200') {
+                this.$message({
+                    message: '添加成功！',
+                    type: 'success'
+                })
+              }
+            })
+          },
             selectUserInfo() {
                 if (this.input !== '') {
                     var myreg = /^[1][3,4,5,7,8][0-9]{9}$/

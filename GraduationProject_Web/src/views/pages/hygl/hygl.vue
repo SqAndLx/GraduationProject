@@ -9,7 +9,7 @@
               <el-option label="会员号" value="c_tel"></el-option>
               <el-option label="办理人" value="c_updateName"></el-option>
             </el-select>
-            <el-button slot="append" icon="el-icon-search"></el-button>
+            <el-button slot="append" icon="el-icon-search" @click="selectByValue()"></el-button>
           </el-input>
           <el-button type="primary" @click="openDialog()" icon="el-icon-plus" class="insert"></el-button>
         </div>
@@ -47,7 +47,7 @@ export default {
       currentPage: 1, //初始页
       pagesize: 8, //    每页的数据
       input3: "",
-      select: ""
+      select: "c_name"
     };
   },
   components: {
@@ -55,6 +55,21 @@ export default {
     addVip
   },
   methods: {
+    selectByValue() {
+      if (this.select === '') {
+        this.getData()
+      } else {
+        let url = '/axios/api/selectHyByZd/' + this.select + '/' + this.input3
+         axios
+        .get(url).then((response) => {
+          this.hyxxList = response.data.data;
+            for (var i in this.hyxxList) {
+              // 处理时间类型数据
+              this.hyxxList[i].data = util.getTimeY(this.hyxxList[i].data);
+            }
+        })
+      }
+    },
     openDialog() {
       this.dialogVisible = true;
     },

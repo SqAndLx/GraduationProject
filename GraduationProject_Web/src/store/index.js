@@ -5,7 +5,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         identifyCode: '', // 正确的验证码
-        actionName: 'zjetj'
+        actionName: 'zjetj',
+        zk: 0
     },
     mutations: {
         changeIdentifyCode(state, data){
@@ -13,6 +14,9 @@ const store = new Vuex.Store({
         },
         changeActionName(state, actionName){
             state.actionName = actionName
+        },
+        setZk(state, zk) {
+            state.zk = zk
         }
     },
     getters: {

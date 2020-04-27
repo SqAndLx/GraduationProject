@@ -1,9 +1,11 @@
 package com.graduation.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.graduation.mode.Purchase;
 import com.graduation.service.PurchaseService;
 import com.graduation.utils.CodeMsg;
 import com.graduation.utils.ResultData;
+import com.graduation.utils.UserUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -72,6 +75,23 @@ public class PurchaseController {
             purchaseService.updateZk(type);
         } catch (Exception e) {
             logger.error("修改折扣出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
+        }
+        return ResultData.success(CodeMsg.SUCCESS);
+    }
+
+    /**
+     * 添加消费记录
+     * @param
+     * @return
+     */
+    @ApiOperation(value = "添加消费记录", notes = "添加消费记录")
+    @GetMapping(path = "/addXfjl")
+    public ResultData addXfjl( @RequestBody Purchase purchase ) {
+        try {
+            purchaseService.addXfjl(purchase);
+        } catch (Exception e) {
+            logger.error("添加消费记录出错", e);
             return ResultData.error(CodeMsg.SERVER_ERROR);
         }
         return ResultData.success(CodeMsg.SUCCESS);
