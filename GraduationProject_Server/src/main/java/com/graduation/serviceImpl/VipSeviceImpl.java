@@ -6,6 +6,7 @@ import com.graduation.service.VipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 @Service
 public class VipSeviceImpl implements VipService {
@@ -31,6 +32,7 @@ public class VipSeviceImpl implements VipService {
     @Override
     public List<Vip> getHyxx() {
         List<Vip> list =vipMapper.getHyxx();
+        list.sort(Comparator.comparing(Vip::getIntegral).reversed());
         return list;
     }
 

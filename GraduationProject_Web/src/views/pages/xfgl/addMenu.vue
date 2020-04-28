@@ -132,27 +132,16 @@
         },
         methods: {
           addXfjl() {
-            if(isVip){
-              let param = {
-              data : new Date(),
-              hymoney : this.money,
-              customerId : this.lfs.id,
-              personnelId : this.lfs.id,
-              goodsId : this.xfxm.id,
-              codeId : this.value
+              let saveParams = {
+                data : new Date(),
+                hymoney : this.money,
+                customerId : this.lfs.id,
+                personnelId : this.lfs.id,
+                goodsId : this.xfxm.id,
+                codeId : this.value
               }
-            } else {
-              let param = {
-              data : new Date(),
-              money : this.money,
-              customerId : this.lfs.id,
-              personnelId : this.lfs.id,
-              goodsId : this.xfxm.id,
-              codeId : this.value
-              }
-            }
             let url = '/axios/api/addXfjl'
-            axios.post(url, this.qs.stringify(saveParams)).then(() => {
+            axios.post(url, saveParams).then(() => {
               if (response.data.code == '200') {
                 this.$message({
                     message: '添加成功！',

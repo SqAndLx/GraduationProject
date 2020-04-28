@@ -6,6 +6,11 @@ import com.graduation.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
@@ -16,6 +21,11 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public List<Purchase> getXfxx() {
         List<Purchase> list =purchaseMapper.getXfxx();
+        // 这块字段设计是不对的，业务表乱加字段剥离不开，只能强行实现
+        // 把这个id的元素删掉
+        list.removeIf(item -> item.getId().equals("0000"));
+        // 按照时间排序
+        list.sort(Comparator.comparing(Purchase::getData));
         return list;
     }
 
@@ -29,5 +39,8 @@ public class PurchaseServiceImpl implements PurchaseService {
         purchaseMapper.updateZk(type);
     }
 
-
+    @Override
+    public void addXfjl(Purchase purchase) {
+        purchaseMapper.addXfjl(purchase);
+    }
 }
