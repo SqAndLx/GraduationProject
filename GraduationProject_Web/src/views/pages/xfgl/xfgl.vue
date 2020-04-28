@@ -44,7 +44,7 @@ export default {
       currentPage: 1, //初始页
       pagesize: 13, //    每页的数据
       xfjlList: [],
-      zk: "",
+      zk: this.$parent.zk,
       flag: true
     };
   },

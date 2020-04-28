@@ -38,7 +38,7 @@
         <el-form :inline="true">
           <el-form-item label="消费项目:">
             <el-select v-model="xfxm" multiple placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item.price"></el-option>
+              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="理发技师:">
@@ -104,7 +104,7 @@
                 }],
                 input: '',
                 value: '',
-                lfs:0,//理发师
+                lfs: '',//理发师
                 xfxm:''//消费项目
             }
         },
@@ -112,9 +112,17 @@
           money() {
             let count = 0
             for (let item of this.xfxm) {
-              count += Number(item)
+                let goodList = this.$store.state.goodsList
+                for (let good of goodList) {
+                    if (good.id === item) {
+                        console.log('xiangdengl', good.price)
+                        count += Number(good.price)
+                    }
+                }
             }
-            count += Number(this.lfs.salary)
+            if (this.lfs) {
+                count += Number(this.lfs.salary)
+            }
             let zk = this.$store.state.zk
             if (zk && zk !== 0 && this.radio === '1') {
               return count * (Number(zk) / 10)
@@ -193,6 +201,7 @@
                     .then((response) => {
                         if (response.data.code == '200') {
                             this.goodsList = response.data.data
+                            this.$store.commit('setGoodsList', this.goodsList)
                         }
                     }).catch((error) => {
                     console.log(error)
