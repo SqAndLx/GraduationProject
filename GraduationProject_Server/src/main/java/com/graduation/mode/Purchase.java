@@ -48,9 +48,4 @@ public class Purchase {
      * 配置项
      */
     private String type;
-
-    private String customerId;
-    private String personnelId;
-    private String goodsId;
-    private int codeId;
 }

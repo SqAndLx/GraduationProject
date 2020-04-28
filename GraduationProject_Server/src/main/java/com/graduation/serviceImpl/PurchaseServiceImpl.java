@@ -29,10 +29,5 @@ public class PurchaseServiceImpl implements PurchaseService {
         purchaseMapper.updateZk(type);
     }
 
-    @Override
-    public void addXfjl(Purchase purchase) {
-        purchaseMapper.addXfjl(purchase);
-    }
-
 
 }

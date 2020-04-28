@@ -7,7 +7,7 @@
     INSERT INTO practise.goods(c_id,c_name,f_price,n_number,f_cost)
     VALUES (
     REPLACE(UUID(), '-', ''),#{name},#{price},#{number},#{cost})
-    </insert>
+</insert>
     <update id="updateSp" parameterType="com.graduation.mode.Goods">
         update practise.goods
         <set>

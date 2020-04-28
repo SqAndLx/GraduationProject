@@ -23,10 +23,4 @@ public interface PurchaseService {
      * @param type
      */
     void updateZk(String type);
-
-    /**
-     * 添加消费记录
-     * @param purchase
-     */
-    void addXfjl(Purchase purchase);
 }
