@@ -1,2 +1,8 @@
 server:
   port: 9999
+spring:
+  ftp:
+    ip: 172.18.40.186
+    port: 21
+    username: liuxin-5
+    password: liu199655
