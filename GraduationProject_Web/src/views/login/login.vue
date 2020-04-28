@@ -118,14 +118,8 @@ export default {
         return;
       }
       if (this.test()) {
-        let saveParams = {
-          number: this.input,
-          password: this.password
-        };
-        axios
-          .post("/axios/api/Login", this.qs.stringify(saveParams))
-          .then(response => {
-            debugger
+          let url = '/axios/api/Login/' + this.input + '/' + this.password
+        axios.get(url).then(response => {
             let ms = response.data;
             if (ms != null  && ms != "") {
               // 将对象转换成json存在缓存中

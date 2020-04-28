@@ -24,10 +24,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     noInfo: true,
     overlay: true,
     host: "localhost",
-    port: 8080,
+    port: 9999,
     proxy: {
       '/axios': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:9999',
         changeOrigin: true,
         pathRewrite: {
           '/axios': '/'

@@ -9,19 +9,19 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/axios': {
-        target: 'http://localhost:8080/',
+        target: 'http://localhost:9999/',
         changeOrigin: true,
         pathRewrite: {
             '/axios': '/'
         }
       }
     },
-    host: 'localhost', 
-    port: 8090, 
+    host: 'localhost',
+    port: 8090,
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
-    poll: false, 
+    poll: false,
     cacheBusting: true,
     cssSourceMap: false
   },
