@@ -44,7 +44,7 @@ export default {
       currentPage: 1, //初始页
       pagesize: 13, //    每页的数据
       xfjlList: [],
-      zk: this.$parent.zk,
+      zk: '',
       flag: true
     };
   },
@@ -100,6 +100,7 @@ export default {
                   if (response.data.code == "200") {
                       console.log(response)
                       this.zk = response.data.data.type;
+                      this.$store.commit('setZk', this.zk)
                   }
               })
               .catch(error => {
