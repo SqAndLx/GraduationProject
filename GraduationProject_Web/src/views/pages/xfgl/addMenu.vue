@@ -38,12 +38,12 @@
         <el-form :inline="true">
           <el-form-item label="消费项目:">
             <el-select v-model="xfxm" multiple placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item"></el-option>
+              <el-option v-for="item in goodsList" :key="item.id" :label="item.name" :value="item.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="理发技师:">
             <el-select v-model="lfs" placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item"></el-option>
+              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="支付方式:">
@@ -79,11 +79,12 @@
 <script>
     import axios from "axios"
     import qs from 'qs'
+    import util from "../../../res/util.js";
 
     export default {
         data() {
             return {
-                // money: 100,
+                money: 0,
                 radio: '2',
                 isVip: false,
                 userInfo: {},
@@ -104,7 +105,7 @@
                 }],
                 input: '',
                 value: '',
-                lfs:0,//理发师
+                lfs:'',//理发师
                 xfxm:''//消费项目
             }
         },
@@ -124,27 +125,29 @@
         },
         methods: {
           addXfjl() {
-            if(isVip){
-              let param = {
-              data : new Date(),
+            debugger
+            let param = {}
+            if(this.isVip){
+              param = {
+              data : util.getTimeY(new Date()),
               hymoney : this.money,
-              customerId : this.lfs.id,
+              customerId : this.userInfo.id,
               personnelId : this.lfs.id,
               goodsId : this.xfxm.id,
               codeId : this.value
               }
             } else {
-              let param = {
-              data : new Date(),
+              param = {
+              data : util.getTimeY(new Date()),
               money : this.money,
-              customerId : this.lfs.id,
+              customerId : this.userInfo.id,
               personnelId : this.lfs.id,
               goodsId : this.xfxm.id,
               codeId : this.value
               }
             }
             let url = '/axios/api/addXfjl'
-            axios.post(url, this.qs.stringify(saveParams)).then(() => {
+            axios.post(url, this.qs.stringify(param)).then(() => {
               if (response.data.code == '200') {
                 this.$message({
                     message: '添加成功！',
