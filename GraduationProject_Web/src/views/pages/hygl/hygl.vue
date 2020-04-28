@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     selectByValue() {
-      if (this.select === '') {
+      if (this.input3 === '') {
         this.getData()
       } else {
         let url = '/axios/api/selectHyByZd/' + this.select + '/' + this.input3

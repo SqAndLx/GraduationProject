@@ -104,8 +104,8 @@ public class VipController {
     }
 
     @ApiOperation(value = "动态传入字段进行模糊查询", notes = "动态传入字段进行模糊查询")
-    @PostMapping(value = "/selectHyByZd")
-    public ResultData selectHyByZd(@RequestParam(name = "zd") String zd,@RequestParam(name = "valu") String valu ){
+    @GetMapping(value = "/selectHyByZd/{zd}/{valu}")
+    public ResultData selectHyByZd(@PathVariable(name = "zd") String zd,@PathVariable(name = "valu") String valu ){
         List<Vip> list;
         try {
             list = vipService.selectHyByZd(zd,valu);
