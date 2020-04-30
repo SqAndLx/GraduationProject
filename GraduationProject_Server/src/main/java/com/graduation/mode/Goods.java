@@ -13,6 +13,10 @@ public class Goods {
      */
     private String name;
     /**
+     * 类别
+     */
+    private String type;
+    /**
      * 单价
      */
     private Float price;
@@ -24,4 +28,8 @@ public class Goods {
      * 进价
      */
     private Float cost;
+    /**
+     * 简介
+     */
+    private String remarks;
 }

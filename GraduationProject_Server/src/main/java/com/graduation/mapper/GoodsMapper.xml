@@ -28,7 +28,7 @@
         where c_id=#{id}
     </update>
     <select id="getSpxx" resultType="com.graduation.mode.Goods">
-        SELECT c_id id,c_name name,f_price price,n_number number,f_cost cost FROM practise.goods
+        SELECT c_id id,c_name name,c_type type,f_price price,n_number number,f_cost cost,c_remark remark FROM practise.goods
     </select>
     <update id="updateKcById" >
     update practise.goods

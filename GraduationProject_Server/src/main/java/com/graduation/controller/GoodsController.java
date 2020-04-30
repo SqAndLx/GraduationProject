@@ -62,9 +62,9 @@ public class GoodsController {
     /**
      * 通过id删除某商品
      */
-    @PostMapping(path = "/deleteSp")
+    @GetMapping(path = "/deleteSp/{id}")
     @ApiOperation(value = "删除商品", notes = "删除商品")
-    public ResultData deleteSp(@RequestParam(name = "id") String id ){
+    public ResultData deleteSp(@PathVariable(name = "id") String id ){
         try {
             goodsService.deleteSp(id);
         } catch (Exception e) {
