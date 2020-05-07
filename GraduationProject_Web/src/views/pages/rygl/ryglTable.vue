@@ -101,7 +101,7 @@ import qs from 'qs'
                  })
             },
             deleteHy(val) {
-                    this.$confirm('将删除该会员, 是否继续?', '提示', {
+                    this.$confirm('将删除该员工, 是否继续?', '提示', {
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
                         type: 'warning'

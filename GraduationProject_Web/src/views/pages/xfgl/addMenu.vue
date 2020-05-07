@@ -120,9 +120,9 @@
                     }
                 }
             }
-            if (this.lfs) {
-                count += Number(this.lfs.salary)
-            }
+            // if (this.lfs) {
+            //     count += Number(this.lfs.salary)
+            // }
             let zk = this.$store.state.zk
             if (zk && zk !== 0 && this.radio === '1') {
               return count * (Number(zk) / 10)

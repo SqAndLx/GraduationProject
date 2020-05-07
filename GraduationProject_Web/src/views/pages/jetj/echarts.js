@@ -82,11 +82,11 @@ export default {
         dataset: {
             dimensions: ['product', '盈利', '收入'],
             source: [
-                {product: '1月', '盈利': yldata[4], '收入': srdata[4]},
-                {product: '2月', '盈利': yldata[3], '收入': srdata[3]},
-                {product: '3月', '盈利': yldata[2], '收入': srdata[2]},
-                {product: '4月', '盈利': yldata[1], '收入': srdata[1]},
-                {product: '5月', '盈利': yldata[0], '收入': srdata[0]}
+                {product: '2020年1月', '盈利': yldata[4], '收入': srdata[4]},
+                {product: '2020年2月', '盈利': yldata[3], '收入': srdata[3]},
+                {product: '2020年3月', '盈利': yldata[2], '收入': srdata[2]},
+                {product: '2020年4月', '盈利': yldata[1], '收入': srdata[1]},
+                {product: '2020年5月', '盈利': yldata[0], '收入': srdata[0]}
             ]
         },
         xAxis: {type: 'category'},
