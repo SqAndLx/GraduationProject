@@ -43,7 +43,7 @@
           </el-form-item>
           <el-form-item label="理发技师:">
             <el-select v-model="lfs" placeholder="请选择" class="selectMenu">
-              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item"></el-option>
+              <el-option v-for="item in barberList" :key="item.id" :label="item.name" :value="item.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="支付方式:">
@@ -59,21 +59,15 @@
           </el-form-item>
         </el-form>
         <div class="result">
-          <span v-if="!isVip" class="resultMoney">消费金额:{{money}}元</span>
-          <span v-else class="resultMoney">折后价格:{{money}}元</span>
+          <span v-if="!isVip" class="resultMoney">消费金额:{{money.toFixed(2)}}元</span>
+          <span v-else class="resultMoney">折后价格:{{money.toFixed(2)}}元</span>
           <span class="footerDiv">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false,addXfjl()">提交</el-button>
+            <el-button @click="close()">取 消</el-button>
+            <el-button type="primary" @click="addXfjl()">提交</el-button>
           </span>
         </div>
       </div>
     </div>
-<!--    <div class="footerDiv">-->
-<!--      <span class="footerDiv">-->
-<!--            <el-button @click="dialogVisible = false">取 消</el-button>-->
-<!--            <el-button type="primary" @click="dialogVisible = false">提交</el-button>-->
-<!--      </span>-->
-<!--    </div>-->
   </div>
 </template>
 <script>
@@ -89,67 +83,68 @@
                 userInfo: {},
                 goodsList: [],
                 barberList: [],
-                options:[{
-                    value:101,
-                    label:'微信',
-                },{
-                    value:102,
-                    label:'支付宝',
-                },{
-                    value:103,
-                    label:'现金',
-                },{
-                    value:104,
-                    label:'银行卡',
+                options: [{
+                    value: 101,
+                    label: '微信',
+                }, {
+                    value: 102,
+                    label: '支付宝',
+                }, {
+                    value: 103,
+                    label: '现金',
+                }, {
+                    value: 104,
+                    label: '银行卡',
                 }],
                 input: '',
                 value: '',
                 lfs: '',//理发师
-                xfxm:''//消费项目
+                xfxm: ''//消费项目
             }
         },
         computed: {
-          money() {
-            let count = 0
-            for (let item of this.xfxm) {
-                let goodList = this.$store.state.goodsList
-                for (let good of goodList) {
-                    if (good.id === item) {
-                        console.log('xiangdengl', good.price)
-                        count += Number(good.price)
+            money() {
+                let count = 0
+                for (let item of this.xfxm) {
+                    let goodList = this.$store.state.goodsList
+                    for (let good of goodList) {
+                        if (good.id === item) {
+                            console.log('xiangdengl', good.price)
+                            count += Number(good.price)
+                        }
                     }
                 }
+                // if (this.lfs) {
+                //     count += Number(this.lfs.salary)
+                // }
+                let zk = this.$store.state.zk
+                if (zk && zk !== 0 && this.radio === '1') {
+                    return count * (Number(zk) / 10)
+                }
+                return count
             }
-            // if (this.lfs) {
-            //     count += Number(this.lfs.salary)
-            // }
-            let zk = this.$store.state.zk
-            if (zk && zk !== 0 && this.radio === '1') {
-              return count * (Number(zk) / 10)
-            }
-            return count
-          }
         },
         methods: {
-          addXfjl() {
-              let saveParams = {
-                data : new Date(),
-                hymoney : this.money,
-                customerId : this.lfs.id,
-                personnelId : this.lfs.id,
-                goodsId : this.xfxm.id,
-                codeId : this.value
-              }
-            let url = '/axios/api/addXfjl'
-            axios.post(url, saveParams).then(() => {
-              if (response.data.code == '200') {
-                this.$message({
-                    message: '添加成功！',
-                    type: 'success'
+            addXfjl() {
+                let saveParams = {
+                    data: new Date(),
+                    hymoney: this.money.toFixed(2),
+                    customerId: this.userInfo.id,
+                    personnelId: this.lfs,
+                    goodsId: this.xfxm,
+                    codeId: this.value
+                }
+                let url = '/axios/api/addXfjl'
+                axios.post(url, saveParams).then(response => {
+                    if (response.data.code == '200') {
+                        this.close();
+                        this.$message({
+                            message: '添加成功！',
+                            type: 'success'
+                        })
+                    }
                 })
-              }
-            })
-          },
+            },
             selectUserInfo() {
                 if (this.input !== '') {
                     var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
@@ -196,7 +191,7 @@
                     console.log(error)
                 })
             },
-            getLfs(){
+            getLfs() {
                 axios.post('/axios/api/getYgxx')
                     .then((response) => {
                         if (response.data.code == '200') {
@@ -205,7 +200,15 @@
                     }).catch((error) => {
                     console.log(error)
                 })
-            }
+            },
+            close() {
+                this.name = "";
+                this.sex = "";
+                this.salary = "";
+                this.tel = "";
+                this.remarks = "";
+                this.$emit("closeDialog");
+            },
         },
         created() {
             //获取下拉框各个选项
@@ -274,7 +277,7 @@
     margin-top: 10px
   }
 
-  .footerDiv{
+  .footerDiv {
     line-height: 67px;
   }
 
@@ -298,17 +301,19 @@
     float: left;
   }
 
-  .el-icon-s-order{
-   margin-right: 5px;
-}
+  .el-icon-s-order {
+    margin-right: 5px;
+  }
 
   .el-icon-s-custom {
     margin-right: 5px;
   }
+
   .selectMenu {
     width: 190px;
   }
-  .btn{
+
+  .btn {
     margin-left: 20%;
   }
 </style>

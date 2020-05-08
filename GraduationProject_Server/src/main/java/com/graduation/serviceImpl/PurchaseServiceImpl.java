@@ -37,6 +37,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public void addXfjl(Purchase purchase) {
+        //添加消费记录
         purchaseMapper.addXfjl(purchase);
+        //修改账户余额.积分
+        //修改库存
     }
 }

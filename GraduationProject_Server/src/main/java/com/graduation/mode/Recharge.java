@@ -17,11 +17,11 @@ public class Recharge {
     /**
      * 充值金额
      */
-    private Integer rechargemoney;
+    private String rechargemoney;
     /**
      * 充值方式
      */
-    private Integer rechargeway;
+    private String rechargeway;
     /**
      * 充值时间
      */

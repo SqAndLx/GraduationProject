@@ -129,11 +129,11 @@ public class GoodsController {
      * @Author ShiQing
      */
     @ApiOperation(value = "查询商品信息(模糊查询)", notes = "查询商品信息(模糊查询)")
-    @PostMapping(value = "/getSpxxByLike")
-    public ResultData getSpxxByLike(@RequestParam("name") String name) {
+    @GetMapping(value = "/getSpxxByName/{valu}")
+    public ResultData getSpxxByLike(@PathVariable(name = "valu") String valu) {
         List<Goods> list;
         try {
-            list = goodsService.getSpxxByLike(name);
+            list = goodsService.getSpxxByLike(valu);
         } catch (Exception e) {
             list = null;
             logger.error("模糊查询商品信息出错", e);

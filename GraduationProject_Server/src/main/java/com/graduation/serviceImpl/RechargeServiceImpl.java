@@ -6,6 +6,8 @@ import com.graduation.service.RechargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RechargeServiceImpl implements RechargeService {
 
@@ -18,5 +20,11 @@ public class RechargeServiceImpl implements RechargeService {
         rechargeMapper.updateBalance(recharge);
         //生成充值记录
         rechargeMapper.addJl(recharge);
+    }
+
+    @Override
+    public List<Recharge> getRechargeByTel(String tel) {
+        List<Recharge> rechargeList = rechargeMapper.getRechargeByTel(tel);
+        return rechargeList;
     }
 }

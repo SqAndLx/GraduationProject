@@ -21,16 +21,17 @@
         where c_id = '0000'
     </update>
     <insert id="addXfjl" parameterType="com.graduation.mode.Purchase">
-    INSERT INTO practise.Purchase(c_id,t_date,
-        <if test="hymoney!=''"> c_hymoney,</if>
+        INSERT INTO practise.Purchase(c_id,t_date,
+        <if test="hymoney!=''">c_hymoney,</if>
         <if test="money!=''">c_money,</if>
         <if test="customerId!=''">c_customerId,</if>
         c_goodsId,c_personnelId,n_codeid)
-    VALUES (
-    REPLACE(UUID(), '-', ''),#{data},
-        <if test="hymoney!=''"> #{hymoney},</if>
+        VALUES (
+        REPLACE(UUID(), '-', ''),#{data},
+        <if test="hymoney!=''">#{hymoney},</if>
         <if test="money!=''">#{money},</if>
         <if test="customerId!=''">#{customerId},</if>
-        #{goodsId},#{personnelId},${codeId})
+        <foreach collection="goodsId" item="goodId" separator=",">#{goodId}</foreach>,
+        #{personnelId},${codeId})
     </insert>
 </mapper>

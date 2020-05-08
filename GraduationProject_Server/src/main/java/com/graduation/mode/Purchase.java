@@ -1,7 +1,10 @@
 package com.graduation.mode;
 import lombok.Data;
 
+import java.sql.Array;
 import java.util.Date;
+import java.util.List;
+
 @Data
 public class Purchase {
     /**
@@ -51,6 +54,7 @@ public class Purchase {
 
     private String customerId;
     private String personnelId;
-    private String goodsId;
+    private List goodsId;
     private int codeId;
+
 }

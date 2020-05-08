@@ -16,4 +16,8 @@
         VALUES (
         REPLACE(UUID(), '-', ''),#{tel},#{rechargemoney},#{rechargeway},#{data},#{remarks})
     </insert>
+    <select id="getRechargeByTel" parameterType="String" resultType="com.graduation.mode.Recharge">
+        select a1.c_id id,a1.n_rechargemoney rechargemoney,a5.c_name rechargeway,a1.t_date data,a1.c_remarks remarks from practise.recharge a1 left join practise.code a5 on a1.n_rechargeway = a5.n_codeid
+        where a1.c_tel = #{tel}
+    </select>
 </mapper>

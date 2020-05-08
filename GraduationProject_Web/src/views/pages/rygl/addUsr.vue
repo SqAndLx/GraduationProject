@@ -42,13 +42,6 @@ export default {
     };
   },
   methods: {
-    // openDialog(val) {
-    //   this.name = val.name;
-    //   this.sex = val.sex;
-    //   this.salary = val.salary;
-    //   this.tel = val.tel;
-    //   this.remarks = val.remarks;
-    // },
     close() {
       this.name = "";
       this.sex = "";

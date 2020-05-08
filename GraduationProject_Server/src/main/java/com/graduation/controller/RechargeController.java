@@ -1,5 +1,6 @@
 package com.graduation.controller;
 
+import com.graduation.mode.Goods;
 import com.graduation.mode.Recharge;
 import com.graduation.service.RechargeService;
 import com.graduation.utils.CodeMsg;
@@ -10,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = {"api"}, produces = "application/json;charset=UTF-8")
@@ -35,5 +38,23 @@ public class RechargeController {
             return  ResultData.error(CodeMsg.SERVER_ERROR);
         }
         return ResultData.success(CodeMsg.SUCCESS);
+    }
+
+    /**
+     * 通过电话号展示充值记录
+     * @return
+     */
+    @ApiOperation(value = "通过电话号展示充值记录", notes = "通过电话号展示充值记录")
+    @GetMapping(value = "/getRechargeByTel/{tel}")
+    public ResultData getRechargeByTel(@PathVariable(name = "tel") String tel){
+        List<Recharge> list;
+        try {
+            list =rechargeService.getRechargeByTel(tel);
+        } catch (Exception e) {
+            list = null;
+            logger.error("通过电话号展示充值记录出错", e);
+            return  ResultData.error(CodeMsg.SERVER_ERROR);
+        }
+        return ResultData.success(list);
     }
 }

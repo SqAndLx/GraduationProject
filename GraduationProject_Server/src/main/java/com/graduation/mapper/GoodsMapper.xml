@@ -4,9 +4,9 @@
 <mapper namespace="com.graduation.dao.GoodsMapper">
 
     <insert id="insertSp" parameterType="com.graduation.mode.Goods">
-    INSERT INTO practise.goods(c_id,c_name,f_price,n_number,f_cost)
+    INSERT INTO practise.goods(c_id,c_name,f_price,n_number,f_cost,c_remark)
     VALUES (
-    REPLACE(UUID(), '-', ''),#{name},#{price},#{number},#{cost})
+    REPLACE(UUID(), '-', ''),#{name},#{price},#{number},#{cost},#{remarks})
 </insert>
     <update id="updateSp" parameterType="com.graduation.mode.Goods">
         update practise.goods
@@ -23,12 +23,14 @@
             <if test="cost != null" >
                 f_cost =#{cost},
             </if>
-
+            <if test="remarks != null" >
+                c_remark =#{remarks},
+            </if>
         </set>
         where c_id=#{id}
     </update>
     <select id="getSpxx" resultType="com.graduation.mode.Goods">
-        SELECT c_id id,c_name name,c_type type,f_price price,n_number number,f_cost cost,c_remark remark FROM practise.goods
+        SELECT c_id id,c_name name,c_type type,f_price price,n_number number,f_cost cost,c_remark remarks FROM practise.goods
     </select>
     <update id="updateKcById" >
     update practise.goods
