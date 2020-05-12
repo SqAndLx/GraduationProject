@@ -24,14 +24,6 @@ public class Purchase {
      */
     private String tel;
     /**
-     * 会员号
-     */
-    private String phone;
-    /**
-     * 消费内容
-     */
-    private String detail;
-    /**
      * 会员价
      */
     private String hymoney;
@@ -39,10 +31,6 @@ public class Purchase {
      * 消费金额
      */
     private String money;
-    /**
-     * 理发师
-     */
-    private String barber;
     /**
      * 支付方式
      */
@@ -53,8 +41,18 @@ public class Purchase {
     private String type;
 
     private String customerId;
+    /**
+     * 理发师
+     */
     private String personnelId;
-    private List goodsId;
+    /**
+     * 消费内容
+     */
+    private String goodsId;
+    /**
+     * 消费内容
+     */
+    private List goodIds;
     private int codeId;
 
 }

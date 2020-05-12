@@ -44,4 +44,9 @@ public interface GoodsMapper {
      * @return
      */
     List<Goods> getSpxxByLike(@Param("name") String name);
+
+    /**
+     * 通过商品id查库存数量
+     */
+    Integer getKcbyId(@Param("goodsId") String goodsId);
 }

@@ -14,11 +14,14 @@
         <span v-else>{{ scope.row.tel }}</span>
       </template>
     </el-table-column>
-    <el-table-column prop="detail" label="消费内容" width="230" align="center"></el-table-column>
-
-    <!-- <el-table-column prop="hymoney" label="会员价" width="230" align="center"></el-table-column> -->
-    <el-table-column prop="money" label="消费金额" width="230" align="center"></el-table-column>
-    <el-table-column prop="barber" label="理发师" width="230" align="center"></el-table-column>
+    <el-table-column prop="goodsId" label="消费内容" width="230" align="center"></el-table-column>
+    <el-table-column prop="money" label="消费金额" width="230" align="center">
+      <template slot-scope="scope">
+        <span v-if="scope.row.hymoney == null">{{scope.row.money}}</span>
+        <span v-else>{{ scope.row.hymoney }}</span>
+      </template>
+    </el-table-column>
+    <el-table-column prop="personnelId" label="理发师" width="230" align="center"></el-table-column>
     <el-table-column prop="way" label="支付方式" width="230" align="center"></el-table-column>
   </el-table>
 </template>

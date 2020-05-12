@@ -126,18 +126,27 @@
         },
         methods: {
             addXfjl() {
-                let saveParams = {
-                    data: new Date(),
-                    hymoney: this.money.toFixed(2),
-                    customerId: this.userInfo.id,
+                let saveParams = {}
+                if(this.userInfo.name != null){
+                    saveParams = {
+                        hymoney: this.money.toFixed(2),
+                        customerId: this.userInfo.id,
+                        personnelId: this.lfs,
+                        goodIds: this.xfxm,
+                        codeId: this.value
+                    }
+                }else{
+                    saveParams = {
+                    money: this.money.toFixed(2),
                     personnelId: this.lfs,
-                    goodsId: this.xfxm,
+                    goodIds: this.xfxm,
                     codeId: this.value
-                }
+                }}
                 let url = '/axios/api/addXfjl'
                 axios.post(url, saveParams).then(response => {
                     if (response.data.code == '200') {
                         this.close();
+                        this.$emit("getData");
                         this.$message({
                             message: '添加成功！',
                             type: 'success'
@@ -202,11 +211,12 @@
                 })
             },
             close() {
-                this.name = "";
-                this.sex = "";
-                this.salary = "";
-                this.tel = "";
-                this.remarks = "";
+                this.input = "";
+                this.userInfo = {};
+                this.xfxm = "";
+                this.lfs = "";
+                this.value = "";
+                this.radio = '2';
                 this.$emit("closeDialog");
             },
         },

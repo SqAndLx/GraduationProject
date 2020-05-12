@@ -47,4 +47,7 @@
         <bind name="sp_name" value="'%' + name + '%'"/>
         where  c_name LIKE #{sp_name}
     </select>
+    <select id="getKcbyId" parameterType="String" resultType="Integer">
+        Select n_number from practise.goods where c_id = #{goodsId}
+    </select>
 </mapper>

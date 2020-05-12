@@ -37,4 +37,5 @@ public interface VipMapper {
      */
     List<Vip> selectHyByZd(@Param("zd")String zd,@Param("valu")String valu);
 
+    Vip selectHybyId(@Param("id")String id);
 }

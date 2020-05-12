@@ -13,7 +13,7 @@
           width="35%"
           :close-on-click-modal="false"
         >
-          <addMenu @closeDialog="closeDialog"></addMenu>
+          <addMenu @getData="getData" @closeDialog="closeDialog"></addMenu>
         </el-dialog>
       </div>
       <div class="table">
@@ -43,7 +43,7 @@
             return {
                 dialogVisible: false,
                 currentPage: 1, //初始页
-                pagesize: 13, //    每页的数据
+                pagesize: 8, //    每页的数据
                 xfjlList: [],
                 zk: '',
                 flag: true

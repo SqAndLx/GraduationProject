@@ -11,6 +11,9 @@
     <update id="updateHy" parameterType="com.graduation.mode.Vip">
         update practise.vip
         <set>
+            <if test="tel != null" >
+                c_tel =#{tel},
+            </if>
             <if test="name != null" >
                 c_name =#{name},
             </if>
@@ -46,5 +49,8 @@
          SELECT c_id id,c_name name, c_sex sex, c_tel tel, n_integral integral,c_grade grade,t_date data,c_updateName updateName,f_balance balance FROM practise.vip
         <bind name="valu" value="'%' + valu + '%'"/>
          where ${zd} like #{valu}
+    </select>
+    <select id="selectHybyId" resultType="com.graduation.mode.Vip" parameterType="String">
+        SELECT c_id id,c_tel tel,c_name name, c_sex sex, n_integral integral,c_grade grade,t_date data,c_updateName updateName,f_balance balance FROM practise.vip where c_id = #{id}
     </select>
 </mapper>

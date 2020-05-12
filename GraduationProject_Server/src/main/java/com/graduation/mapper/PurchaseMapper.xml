@@ -3,13 +3,24 @@
 
 <mapper namespace="com.graduation.dao.PurchaseMapper">
     <select id="getXfxx" resultType="com.graduation.mode.Purchase">
-       select a1.c_id id,a3.c_name name,a3.c_tel tel,a1.t_date data,a1.c_hymoney hymoney,a1.c_money money,a4.c_name detail,a2.c_name  barber,a5.c_name way
+       select a1.c_id id,a3.c_name name,a3.c_tel tel,a1.t_date data,a1.c_hymoney hymoney,a1.c_money money,a1.c_goodsId goodsId,a2.c_name  personnelId,a5.c_name way
         from practise.purchase a1
         left join  practise.personnel a2 on a1.c_personnelId=a2.c_id
         left join practise.vip a3 on a1.c_customerId = a3.c_id
-        left join practise.goods a4 on a1.c_goodsId = a4.c_id
         left join practise.code a5 on a1.n_codeid = a5.n_codeid
 </select>
+    <select id="getGoodsName" parameterType="List" resultType="String">
+        select c_name from practise.goods
+        <where>
+            c_id in
+            <foreach item="item" collection="list" separator="," open="(" close=")" index="">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+    <select id="getGoodName" parameterType="String" resultType="String">
+        select c_name from practise.goods where c_id = #{goodId}
+    </select>
     <select id="getZk" resultType="com.graduation.mode.Purchase">
         select c_type type from practise.purchase where c_id = '0000'
     </select>
@@ -22,16 +33,10 @@
     </update>
     <insert id="addXfjl" parameterType="com.graduation.mode.Purchase">
         INSERT INTO practise.Purchase(c_id,t_date,
-        <if test="hymoney!=''">c_hymoney,</if>
-        <if test="money!=''">c_money,</if>
-        <if test="customerId!=''">c_customerId,</if>
+        c_hymoney,c_money,c_customerId,
         c_goodsId,c_personnelId,n_codeid)
-        VALUES (
-        REPLACE(UUID(), '-', ''),#{data},
-        <if test="hymoney!=''">#{hymoney},</if>
-        <if test="money!=''">#{money},</if>
-        <if test="customerId!=''">#{customerId},</if>
-        <foreach collection="goodsId" item="goodId" separator=",">#{goodId}</foreach>,
-        #{personnelId},${codeId})
+        VALUES
+            (REPLACE(UUID(), '-', ''),#{data},#{hymoney},#{money},#{customerId},#{goodsId},
+            #{personnelId},${codeId})
     </insert>
 </mapper>
