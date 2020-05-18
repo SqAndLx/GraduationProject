@@ -67,7 +67,7 @@ public class PurchaseServiceImpl implements PurchaseService {
             //获取当前会员信息
             Vip vipXx = vipMapper.selectHyByTel(purchase.getTel());
             vipXx.setBalance(vipXx.getBalance() - Float.parseFloat(purchase.getHymoney()));
-            vipXx.setIntegral(vipXx.getIntegral() + Integer.parseInt(purchase.getHymoney()));
+            vipXx.setIntegral(vipXx.getIntegral() + Integer.valueOf(StringUtils.substringBefore(purchase.getHymoney(),".")));
             //修改
             vipMapper.updateHy(vipXx);
         }

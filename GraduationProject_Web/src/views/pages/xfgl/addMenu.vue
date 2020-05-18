@@ -131,6 +131,7 @@
                     saveParams = {
                         hymoney: this.money.toFixed(2),
                         customerId: this.userInfo.id,
+                        tel: this.userInfo.tel,
                         personnelId: this.lfs,
                         goodIds: this.xfxm,
                         codeId: this.value
@@ -156,7 +157,7 @@
             },
             selectUserInfo() {
                 if (this.input !== '') {
-                    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+                    var myreg = /^[1][3,4,5,6,7,8][0-9]{9}$/
                     if (!myreg.test(this.input)) {
                         this.$message({
                             message: '请输入正确的手机号！',

@@ -11,9 +11,9 @@
           从{{this.tjq2}}到{{this.tjq1}}，美酷理发店共收入
           <span
             style="cursor:text;color:#333;"
-          >{{this.gsData.yl}}</span>元，
+          >{{this.gsData.total}}</span>元，
           其中，盈利
-          <span style="cursor:text;color:#333;">{{this.gsData.total}}</span>元。
+          <span style="cursor:text;color:#333;">{{this.gsData.yl}}</span>元。
         </div>
       </div>
       <!-- 柱状图-->

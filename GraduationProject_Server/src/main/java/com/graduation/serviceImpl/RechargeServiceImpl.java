@@ -6,6 +6,7 @@ import com.graduation.service.RechargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,6 +19,7 @@ public class RechargeServiceImpl implements RechargeService {
     public void recharge(Recharge recharge) {
         //修改VIP表中账户余额
         rechargeMapper.updateBalance(recharge);
+        recharge.setData(new Date());
         //生成充值记录
         rechargeMapper.addJl(recharge);
     }
