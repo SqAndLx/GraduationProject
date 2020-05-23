@@ -20,6 +20,7 @@ export default {
       legend: {
         orient: 'horizontal',
         left: 'right',
+        // left:450,
         top: 100,
         data: bztData.name,
       },

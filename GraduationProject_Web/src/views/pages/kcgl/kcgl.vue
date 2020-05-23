@@ -9,7 +9,7 @@
           </el-select>
           <el-button slot="append" icon="el-icon-search" @click="selectByValue()"></el-button>
         </el-input>
-        <el-button type="primary" class="addBtn" @click="updateDialogVisible = true">添加</el-button>
+        <el-button type="primary" class="addBtn" @click="addDialogVisible = true">添加</el-button>
       </div>
       <!-- 商品渲染开始-->
       <div class="picBoder">
@@ -72,7 +72,7 @@
           </el-form-item>
         </el-form>
       </el-dialog>
-      <el-dialog title="添加商品" :visible.sync="updateDialogVisible" width="35%">
+      <el-dialog title="添加商品" :visible.sync="addDialogVisible" width="35%">
         <el-form label-width="80px">
           <el-form-item label="商品名称">
             <el-input v-model="good.name"></el-input>
@@ -114,6 +114,7 @@
                 price: '',
                 updateDialogVisible: false,
                 good: {},
+                addDialogVisible:false,
             }
         },
         methods: {
@@ -165,6 +166,7 @@
             },
             close() {
                 this.updateDialogVisible = false
+                this.addDialogVisible = false
                 this.good = {}
             },
             openUpdateGood(data) {

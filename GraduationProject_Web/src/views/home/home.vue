@@ -19,6 +19,8 @@
       <hyglPage v-if="actionName === 'hygl'"></hyglPage>
       <ryglPage v-if="actionName === 'rygl'"></ryglPage>
       <kcglPage v-if="actionName === 'kcgl'"></kcglPage>
+      <yyPage v-if="actionName === 'yy'"></yyPage>
+      <yyjlPage v-if="actionName === 'yyjl'"></yyjlPage>
     </div>
 </div>
 </template>
@@ -30,17 +32,19 @@ import jetjPage from '../pages/jetj/jetj.vue'
 import kcglPage from '../pages/kcgl/kcgl.vue'
 import ryglPage from '../pages/rygl/rygl.vue'
 import xfglPage from '../pages/xfgl/xfgl.vue'
+import yyPage from '../pages/yy/yuyue.vue'
+import yyjlPage from '../pages/yyjl/yuyuejilu.vue'
 
 export default {
   data() {
     return {
      name: '',
      dialogVisible: false,
-     actionName: 'zjetj'
+     actionName: ''
     }
   },
   components:{
-    tabs, hyglPage, jetjPage, kcglPage, ryglPage, xfglPage
+    tabs, hyglPage, jetjPage, kcglPage, ryglPage, xfglPage, yyPage, yyjlPage
   },
   methods: {
     out(){
@@ -53,8 +57,13 @@ export default {
     let loginer = JSON.parse(window.localStorage.getItem('loginer'))
     if (loginer.type === '0') {
       this.name = '店员'
+      this.actionName = 'zjetj'
     } else if (loginer.type === '1') {
       this.name = '管理员'
+      this.actionName = 'zjetj'
+    } else if (loginer.type === '2') {
+      this.name = loginer.id
+      this.actionName = 'yy'
     }
   },
   watch: {

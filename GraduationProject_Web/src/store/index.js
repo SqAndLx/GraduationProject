@@ -5,7 +5,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         identifyCode: '', // 正确的验证码
-        actionName: 'zjetj',
+        actionName: '',
         zk: 0,
         goodsList: []
     },

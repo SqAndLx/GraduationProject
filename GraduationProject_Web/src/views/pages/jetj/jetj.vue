@@ -72,6 +72,7 @@ export default {
         .post("/axios/api/bzt")
         .then(response => {
           if (response.data.code == "200") {
+            console.log(response.data.data,"饼状图数据")
             this.bztData = response.data.data;
             this.orgOptions = echarts.getOptions(this.bztData);
           }
@@ -85,6 +86,7 @@ export default {
         .post("/axios/api/getYYlZj")
         .then(response => {
           if (response.data.code == "200") {
+            console.log(response.data.data,"柱状图数据")
             this.zztData = response.data.data;
             this.zzOptions = echarts.getZzOptions(this.zztData);
           }

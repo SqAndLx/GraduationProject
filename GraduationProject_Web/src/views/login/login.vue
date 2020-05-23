@@ -15,6 +15,8 @@
     <br />
     <yzm class="yzm" ref="child"></yzm>
     <el-button type="primary" @click="login" class="btn">登录</el-button>
+    <br/>
+    <el-button type="primary" @click="openZc()" class="btn">注册</el-button>
     <br />
     <div class="xgmmdiv">
       <span class="xgmm" @click="openXg()">修改密码</span>
@@ -46,6 +48,16 @@
       <br />
       <el-button type="primary" @click="update()" class="btn">确定修改</el-button>
     </el-dialog>
+
+    <el-dialog title="注册账号" :visible.sync="zcOpen" width="35%">
+      <span class="font2">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
+      <el-input placeholder="请输入账号" v-model="input3" clearable class="password2" type="text" show-word-limit></el-input>
+      <br />
+      <span class="font2">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+      <el-input placeholder="请输入初始密码" v-model="password3" clearable class="password2" show-password></el-input>
+      <br />
+      <el-button type="primary" @click="zc()" class="btn">注册</el-button>
+    </el-dialog>
   </div>
 </template>
 
@@ -63,12 +75,36 @@ export default {
       newPassword: "",
       password2: "",
       newPassword2: "",
-      input2: ""
+      input2: "",
+      zcOpen: false,
+      input3: '',
+      password3: ''
     };
   },
   methods: {
+    zc() {
+      let saveParams = {
+        zh: this.input3,
+        password: this.password3
+      };
+      axios
+        .post("/axios/api/zc", this.qs.stringify(saveParams))
+        .then(response => {
+          if(response.data.code == '200') {
+            this.input3 = ''
+            this.password3 = ''
+            this.zcOpen = false
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     openXg() {
       this.flag = true;
+    },
+    openZc() {
+      this.zcOpen = true;
     },
     update() {
       if (this.newPassword != this.newPassword2) {
