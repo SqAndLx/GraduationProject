@@ -2,6 +2,7 @@ package com.graduation.dao;
 
 import com.graduation.mode.Loginer;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface LoginMapper {
@@ -20,4 +21,6 @@ public interface LoginMapper {
      * @param password
      */
     void updateMm(String number,String password);
+
+    void zc(@Param("zh") String number, @Param("password") String password);
 }

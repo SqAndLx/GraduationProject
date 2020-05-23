@@ -19,4 +19,6 @@ public interface LoginService {
      * @param password
      */
     void updateMm(String number,String password);
+
+    void zc(String number, String password);
 }

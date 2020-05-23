@@ -39,4 +39,16 @@ public class LoginCotroller {
         }
         return ResultData.success(CodeMsg.SUCCESS);
     }
+
+    @ApiOperation(value = "修改密码", notes = "修改密码")
+    @PostMapping(path = "/zc")
+    public ResultData zc(@RequestParam(name = "zh") String number , @RequestParam(name = "password") String password ) {
+        try {
+            loginService.zc(number,password);
+        } catch (Exception e) {
+            logger.error("修改密码出错", e);
+            return ResultData.error(CodeMsg.SERVER_ERROR);
+        }
+        return ResultData.success(CodeMsg.SUCCESS);
+    }
 }

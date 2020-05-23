@@ -7,36 +7,37 @@
             ry.c_name name,
             count(xf.c_id) cou
         from
-            purchase xf
+            (select c_id,c_personnelId from purchase where c_id != '0000') xf
             left join
             personnel ry
          on
             xf.c_personnelId = ry.c_id
         GROUP BY
             ry.c_name
+
     </select>
     <select id="getTotal"  resultType="Integer">
         select
-        ifnull(sum(c_money),0)
+        ifnull(sum(c_hymoney),0)+ifnull(sum(c_money),0)
         from purchase
         where
         t_date BETWEEN #{year}  and #{tomYear}
     </select>
     <select id="ylYsp"  resultType="Integer">
         select
-        ifnull(sum(xf.c_hymoney)-sum(sp.f_cost),0)
-        from purchase xf,goods sp
+        (ifnull(sum(c_hymoney),0)+ifnull(sum(c_money),0)) * 0.6
+        from purchase
         where
-        xf.c_goodsId = sp.c_id
+        c_goodsId != ''
         and
-        t_date BETWEEN #{year}  and #{tomYear}
+        t_date BETWEEN #{year} and #{tomYear}
     </select>
     <select id="ylWsp"  resultType="Integer">
         select
-        ifnull(sum(c_hymoney),0)
+		ifnull(sum(c_hymoney),0)+ifnull(sum(c_money),0)
         from purchase
         where
-        c_goodsId is null
+        c_goodsId = ''
         and
         t_date BETWEEN #{year}  and #{tomYear}
     </select>

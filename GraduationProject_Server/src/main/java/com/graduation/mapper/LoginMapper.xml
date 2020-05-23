@@ -22,4 +22,9 @@
         </set>
         where c_id=#{number}
     </update>
+
+    <insert id="zc" parameterType="com.graduation.mode.Loginer">
+    INSERT INTO practise.login(c_id,c_password,c_type)
+    VALUES (#{zh},#{password},'2')
+    </insert>
 </mapper>

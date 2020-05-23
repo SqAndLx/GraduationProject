@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.graduation.dao.YuyueMapper">
+
+    <insert id="insertYy" parameterType="com.graduation.mode.Yuyue">
+    INSERT INTO practise.order(c_id,c_name,c_tel,dt_time,c_lfs,c_nr)
+    VALUES (
+    REPLACE(UUID(), '-', ''),#{name},#{tel},#{time},#{lfs},#{nr})
+</insert>
+    <update id="updateSp" parameterType="com.graduation.mode.Goods">
+        update practise.goods
+        <set>
+            <if test="name != null" >
+                c_name =#{name},
+            </if>
+            <if test="price != null" >
+                f_price =#{price},
+            </if>
+            <if test="number != null" >
+                n_number =#{number},
+            </if>
+            <if test="cost != null" >
+                f_cost =#{cost},
+            </if>
+            <if test="remarks != null" >
+                c_remark =#{remarks},
+            </if>
+        </set>
+        where c_id=#{id}
+    </update>
+    <select id="getYy" resultType="com.graduation.mode.Yuyue" parameterType="String">
+        SELECT c_id id, c_tel tel, c_name name, dt_time time, c_lfs lfs, c_nr nr FROM practise.order where c_name = #{name}
+    </select>
+    <select id="getAll" resultType="com.graduation.mode.Yuyue" >
+        SELECT c_id id, c_tel tel, c_name name, dt_time time, c_lfs lfs, c_nr nr FROM practise.order
+    </select>
+    <update id="updateKcById" >
+    update practise.goods
+    <set>
+    <if test="number != null" >
+        n_number = #{number}
+    </if>
+    </set>
+        where c_id=#{id}
+    </update>
+    <select id="getSpxxByLike"  resultType="com.graduation.mode.Goods">
+        SELECT c_id id,c_name name,f_price price,n_number number,f_cost cost
+        FROM practise.goods
+        <bind name="sp_name" value="'%' + name + '%'"/>
+        where  c_name LIKE #{sp_name}
+    </select>
+    <select id="getKcbyId" parameterType="String" resultType="Integer">
+        Select n_number from practise.goods where c_id = #{goodsId}
+    </select>
+</mapper>

@@ -27,4 +27,9 @@ public class LoginServiceImpl implements LoginService {
     public void updateMm(String number, String password) {
         loginMapper.updateMm(number,password);
     }
+
+    @Override
+    public void zc(String number, String password) {
+        loginMapper.zc(number,password);
+    }
 }
