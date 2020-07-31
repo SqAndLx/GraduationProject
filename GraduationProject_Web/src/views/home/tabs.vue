@@ -25,7 +25,6 @@ export default {
   },
   created(){
       let loginer = JSON.parse(window.localStorage.getItem('loginer'))
-      debugger
       if (loginer.type === '1') {
           this.isAdmin = true
       }
