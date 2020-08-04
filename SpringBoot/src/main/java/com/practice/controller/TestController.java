@@ -1,6 +1,6 @@
 package com.practice.controller;
 
-import com.practice.bean.Entity.BeanEntity;
+import com.practice.bean.Entity.ExampleEntity;
 import com.practice.service.BeanService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,8 +26,8 @@ public class TestController {
     @GetMapping(value = "/test", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value="测试")
     @ApiResponses({ @ApiResponse(code = 200, message = "操作成功") })
-    public List<BeanEntity> test() {
-        List<BeanEntity> allBeanList = beanService.getAllBean();
+    public List<ExampleEntity> test() {
+        List<ExampleEntity> allBeanList = beanService.getAllBean();
         return allBeanList;
     }
 }

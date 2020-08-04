@@ -52,11 +52,26 @@
             <version>1.1.10</version>
         </dependency>
         <!--驱动，postgreSql-->
+        <!--<dependency>-->
+            <!--<groupId>org.postgresql</groupId>-->
+            <!--<artifactId>postgresql</artifactId>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+        <!-- mysql数据库配置 begin -->
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.0.8</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- mysql数据库配置 end -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- swagger -->
         <dependency>
             <groupId>io.springfox</groupId>

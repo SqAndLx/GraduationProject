@@ -4,10 +4,11 @@ spring:
   datasource:
     continue-on-error: false
     name: dataSource
+    driverClassName: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:postgresql://172.18.73.72:5432/abase?charset=UTF8;appname=abase
-    username: yjbl
-    password: tusc@6789#JKL
+    url: jdbc:mysql://localhost:3306/springboot
+    username: root
+    password: 11111111
     druid:
       initialSize: 50
       minIdle: 50
@@ -30,7 +31,7 @@ spring:
         allow: 127.0.0.1
         deny:
 mybatis:
-  type-aliases-package: com.prictice.bean
+  type-aliases-package: com.prictice.bean.Entity
   mapperLocations: classpath:mapper/*.xml
 swagger:
   enable: true

@@ -1,6 +1,6 @@
 package com.practice.ServiceImpl;
 
-import com.practice.bean.Entity.BeanEntity;
+import com.practice.bean.Entity.ExampleEntity;
 import com.practice.mapper.BeanMapper;
 import com.practice.service.BeanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class BeanServiceImpl implements BeanService {
     private BeanMapper beanMapper;
 
     @Override
-    public List<BeanEntity> getAllBean() {
+    public List<ExampleEntity> getAllBean() {
         return beanMapper.selectAll();
     }
 }
