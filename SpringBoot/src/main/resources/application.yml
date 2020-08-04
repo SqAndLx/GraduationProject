@@ -33,5 +33,10 @@ spring:
 mybatis:
   type-aliases-package: com.prictice.bean.Entity
   mapperLocations: classpath:mapper/*.xml
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 swagger:
   enable: true
