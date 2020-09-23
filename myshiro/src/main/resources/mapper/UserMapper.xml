@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shiqing.myshiro.dao.UserDao">
+<select id="getUserRoleByName" parameterType="String" resultType="com.shiqing.myshiro.bean.vo.UserRole">
+    SELECT
+        user_shiro.c_name cname,
+        role_shiro.c_role crole
+    FROM
+        user_shiro
+    LEFT JOIN user_role_shiro ON user_role_shiro.c_user_id = user_shiro.c_id
+    LEFT JOIN role_shiro ON user_role_shiro.c_role_id = role_shiro.c_id
+    where user_shiro.c_name = #{name}
+</select>
+    <select id="getRolePrivilegeByRole" parameterType="String" resultType="com.shiqing.myshiro.bean.vo.RolePrivilege">
+    SELECT
+        role_shiro.c_role crolename,
+        privileges_shiro.privilege_name cprivilegename
+    FROM
+        role_shiro
+    LEFT JOIN role_privilege_shiro ON role_privilege_shiro.c_role_id = role_shiro.c_id
+    LEFT JOIN privileges_shiro ON role_privilege_shiro.c_privilege_id = privileges_shiro.c_id
+    where role_shiro.c_role = #{role}
+</select>
+
+    <select id="getUserByName" parameterType="String" resultType="com.shiqing.myshiro.bean.User">
+    SELECT
+        c_name cname,
+        c_password cpassword
+    FROM
+        user_shiro
+    where c_name = #{name}
+</select>
+</mapper>

@@ -1,0 +1,11 @@
+server:
+  port: 7777
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://172.18.41.159:3306/practise?characterEncoding=utf8
+    username: root
+    password: root
+mybatis:
+  # 配置mybatis的扫描
+  mapper-locations: classpath*:mapper/**.xml
