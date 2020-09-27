@@ -4,6 +4,8 @@ import com.shiqing.myshiro.bean.User;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
-    private Logger logger= LoggerFactory.getLogger(LoginController.class);
+    private Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @ApiOperation(value = "登陆", notes = "登陆")
     @RequestMapping("/login")
@@ -33,9 +35,12 @@ public class LoginController {
         try {
             //进行验证，这里可以捕获异常，然后返回对应信息
             subject.login(usernamePasswordToken);
-        } catch (AuthenticationException e) {
-            logger.error("账号或密码错误！", e);
-            return "账号或密码错误！";
+        } catch (UnknownAccountException e) {
+            logger.error("用户名不存在！", e);
+            return "用户名不存在！";
+        }catch (IncorrectCredentialsException e) {
+            logger.error("用户名或密码错误！", e);
+            return "用户名或密码错误！";
         }
         return "login success";
     }
@@ -50,12 +55,12 @@ public class LoginController {
 
 
     @RequestMapping("/testAaddress")
-    public String testAddress(){
+    public String testAddress() {
         return "我已经登陆了！";
     }
 
     @RequestMapping("/error2")
-    public String error(){
+    public String error() {
         return "失败了！";
     }
 }

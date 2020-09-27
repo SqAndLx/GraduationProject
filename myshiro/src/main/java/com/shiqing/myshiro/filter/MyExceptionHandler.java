@@ -19,13 +19,20 @@ public class MyExceptionHandler{
     @ResponseBody
     public String ErrorHandler(AuthorizationException e) {
         log.error("没有通过权限验证！", e);
-        return "没有通过权限验证！";
+        return "没有通过权限验证！！";
     }
 
     @ExceptionHandler
     @ResponseBody
     public String ErrorHandler(AuthenticationException e) {
         log.error("账号或密码错误！", e);
-        return "账号或密码错误！";
+        return "账号或密码错误！！";
     }
+    @ExceptionHandler
+    @ResponseBody
+    public String ErrorHandler(Exception e) {
+        log.error("异常！", e);
+        return "异常！";
+    }
+
 }

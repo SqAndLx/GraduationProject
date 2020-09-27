@@ -34,7 +34,7 @@ public class MyAuthenticationFilter extends FormAuthenticationFilter {
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
-        log.info("验证用户信息开始------------------start");
+        log.info("验证用户信息isAccessAllowed开始------------------start");
         HttpServletRequest req = (HttpServletRequest) request;
         String requestURI = req.getRequestURI();
         Subject subject = SecurityUtils.getSubject();
@@ -60,12 +60,6 @@ public class MyAuthenticationFilter extends FormAuthenticationFilter {
                 throw new AuthorizationException("用户无权访问!");
             }
         }
-
-//        //用户放入request中
-//        TUser principal = (TUser) subject.getPrincipal();
-//        //从缓存中获取用户更新session中的用户信息
-//        req.getSession().setAttribute("user", userService.getCacheUser(principal.getcAccount()));
-//        log.info("验证用户信息结束,用户{}------------------end", principal.getcAccount());
         return true;
     }
 

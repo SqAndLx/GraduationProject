@@ -4,17 +4,16 @@ import com.shiqing.myshiro.bean.User;
 import com.shiqing.myshiro.bean.vo.RolePrivilege;
 import com.shiqing.myshiro.bean.vo.UserRole;
 import com.shiqing.myshiro.service.LoginService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
-import org.apache.shiro.util.SimpleByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
+ * 自定义的realm
  * 继承AuthorizingRealm 重写认证和鉴权方法
  */
 public class CustomRealm extends AuthorizingRealm {
@@ -38,6 +38,7 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        logger.info("开始添加权限--------------------------------");
         //获取登录用户名
         String name = (String) principalCollection.getPrimaryPrincipal();
         //根据用户名去数据库查询用户信息
@@ -71,6 +72,7 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        logger.info("开始认证--------------------------------");
         if (authenticationToken.getPrincipal() == null) {
             return null;
         }
@@ -84,9 +86,17 @@ public class CustomRealm extends AuthorizingRealm {
             logger.error("获取用户信息失败");
             return null;
         } else {
-            //这里验证authenticationToken和simpleAuthenticationInfo的信息
-            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(name, user.getCpassword(),getName());
+            //参数1：数据库中的user（可以是对象也可以是username），可以用.getPrincipal()获取
+            //参数2：从数据库获得的密码
+            //参数3：盐（这里用的是用户名）
+            //参数4：realm的名字
+            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
+                    name,
+                    user.getCpassword(),
+                    ByteSource.Util.bytes(name),
+                    getName());
             return simpleAuthenticationInfo;
         }
     }
+
 }
