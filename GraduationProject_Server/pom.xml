@@ -64,7 +64,7 @@
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
-            <version>3.3</version>
+            <version>3.9.0</version>
         </dependency>
     </dependencies>
     <!--在编译的时候mapper.xml编译不上，需要添加以下build配置-->
